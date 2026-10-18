@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
 using RxV4A.Core;
+using RxV4A.Host.Localization;
 
 namespace RxV4A.Host;
 
@@ -161,7 +162,7 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                     operationId,
                     ControlOutcome.Blocked,
                     "blocked_by_context",
-                    "電源ONは禁止コンテキストによりブロックされました。",
+                    Strings.Op_PowerBlocked,
                     []);
             }
 
@@ -172,7 +173,7 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                     operationId,
                     ControlOutcome.AlreadySatisfied,
                     "already_satisfied",
-                    "すでに目的の電源状態です。",
+                    Strings.Op_AlreadyPower,
                     [new ControlStage("power", "skipped")]);
             }
 
@@ -188,7 +189,7 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                 operationId,
                 ControlOutcome.Succeeded,
                 "success",
-                "電源操作を完了しました。",
+                Strings.Op_PowerDone,
                 [new ControlStage("power", "completed")]);
         }
         catch (Exception exception) when (IsOperationalFailure(exception))
@@ -218,7 +219,7 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                     $"context:{contextId}:activate",
                     ControlOutcome.AlreadySatisfied,
                     "already_active",
-                    "コンテキストはすでに有効です。アンプ状態は変更しません。",
+                    Strings.Op_ContextAlreadyActive,
                     stages);
             }
 
@@ -236,8 +237,8 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                     actionsSucceeded ? ControlOutcome.Succeeded : ControlOutcome.PartialFailure,
                     actionsSucceeded ? "success" : "registered_action_failed",
                     actionsSucceeded
-                        ? "コンテキストを有効化しました。"
-                        : "コンテキストを有効化しましたが、一部の登録済みアクションを実行できませんでした。",
+                        ? Strings.Op_ContextActivated
+                        : Strings.Op_ContextActivatedPartial,
                     stages);
             }
 
@@ -250,8 +251,8 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                     actionsSucceeded ? ControlOutcome.Succeeded : ControlOutcome.PartialFailure,
                     actionsSucceeded ? "success" : "registered_action_failed",
                     actionsSucceeded
-                        ? "コンテキストを有効化し、アンプをStandbyにしました。"
-                        : "アンプをStandbyにしましたが、一部の登録済みアクションを実行できませんでした。",
+                        ? Strings.Op_ContextActivatedStandby
+                        : Strings.Op_ContextActivatedStandbyPartial,
                     stages);
             }
             catch (Exception exception) when (IsOperationalFailure(exception))
@@ -261,7 +262,7 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                     $"context:{contextId}:activate",
                     ControlOutcome.PartialFailure,
                     "standby_failed",
-                    "コンテキストは有効ですが、アンプをStandbyにできませんでした。",
+                    Strings.Op_ContextStandbyFailed,
                     stages);
             }
         }
@@ -293,10 +294,10 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                     : actionsSucceeded ? ControlOutcome.Succeeded : ControlOutcome.PartialFailure,
                 !deactivated ? "already_inactive" : actionsSucceeded ? "success" : "registered_action_failed",
                 !deactivated
-                    ? "コンテキストはすでに解除されています。"
+                    ? Strings.Op_ContextAlreadyInactive
                     : actionsSucceeded
-                    ? "コンテキストを解除しました。アンプは自動的にONにしません。"
-                    : "コンテキストを解除しましたが、一部の登録済みアクションを実行できませんでした。アンプは自動的にONにしません。",
+                    ? Strings.Op_ContextDeactivated
+                    : Strings.Op_ContextDeactivatedPartial,
                 stages);
         }
         finally
@@ -321,7 +322,7 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                     $"activity:{activityId}:activate",
                     ControlOutcome.Blocked,
                     "blocked_by_context",
-                    "アクティビティは電源ON禁止コンテキストによりブロックされました。",
+                    Strings.Op_ActivityBlocked,
                     stages);
             }
 
@@ -332,7 +333,7 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                     $"activity:{activityId}:activate",
                     ControlOutcome.Failed,
                     "configuration_missing",
-                    "入力またはSCENEを1つだけ設定してください。",
+                    Strings.Op_ActivityConfig,
                     stages);
             }
 
@@ -390,8 +391,8 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                 actionsSucceeded ? ControlOutcome.Succeeded : ControlOutcome.PartialFailure,
                 actionsSucceeded ? "success" : "registered_action_failed",
                 actionsSucceeded
-                    ? "アクティビティを目的状態へ収束させました。"
-                    : "アンプ操作は完了しましたが、一部の登録済みアクションを実行できませんでした。",
+                    ? Strings.Op_ActivityDone
+                    : Strings.Op_ActivityPartial,
                 stages);
         }
         catch (Exception exception) when (IsOperationalFailure(exception))
@@ -401,7 +402,7 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                 $"activity:{activityId}:activate",
                 changedPower ? ControlOutcome.PartialFailure : ControlOutcome.Failed,
                 MapErrorCode(exception),
-                "アクティビティを完了できませんでした。",
+                Strings.Op_ActivityFailed,
                 stages);
         }
         finally
@@ -436,8 +437,8 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                     actionsSucceeded ? ControlOutcome.Succeeded : ControlOutcome.PartialFailure,
                     actionsSucceeded ? "success" : "registered_action_failed",
                     actionsSucceeded
-                        ? "アクティビティを解除しました。アンプは自動的にStandbyへ変更しません。"
-                        : "アクティビティを解除しましたが、一部の登録済みアクションを実行できませんでした。アンプは変更しません。",
+                        ? Strings.Op_ActivityDeactivated
+                        : Strings.Op_ActivityDeactivatedPartial,
                     stages);
             }
 
@@ -445,7 +446,7 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
                 $"activity:{activityId}:deactivate",
                 ControlOutcome.AlreadySatisfied,
                 "already_inactive",
-                "アクティビティを解除しました。アンプは自動的にStandbyへ変更しません。",
+                Strings.Op_ActivityDeactivated,
                 [new ControlStage("activity-state", "skipped")]);
         }
         finally
@@ -527,7 +528,7 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
     private void ValidateActivityTarget(ActivityConfiguration configuration)
     {
         var capabilities = _deviceManager.Snapshot.Capabilities
-            ?? throw new DeviceUnavailableException("Capabilityを取得できていません。");
+            ?? throw new DeviceUnavailableException(Strings.Error_CapabilityMissing);
         var main = capabilities.FindZone("main")
             ?? throw new CapabilityNotSupportedException("main");
         if (configuration.InputId is string inputId &&
@@ -552,7 +553,7 @@ public sealed class ControlOrchestrator : IControlOrchestrator, IDisposable
             operationId,
             partial ? ControlOutcome.PartialFailure : ControlOutcome.Failed,
             MapErrorCode(exception),
-            "操作を完了できませんでした。",
+            Strings.Error_OperationFailed,
             [new ControlStage("operation", "failed", MapErrorCode(exception))]);
 
     private async Task<bool> ExecuteActionSequenceAsync(

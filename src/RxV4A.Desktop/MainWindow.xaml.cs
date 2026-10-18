@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using RxV4A.Core;
 using RxV4A.Host;
+using RxV4A.Host.Localization;
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 using Point = System.Windows.Point;
 using Size = System.Windows.Size;
@@ -125,17 +126,17 @@ public partial class MainWindow : Window
             var zone = capabilities?.FindZone("main");
 
             ConnectionText.Text = _refreshInProgress
-                ? "状態を確認中…"
+                ? Strings.Main_CheckingState
                 : snapshot.ConnectionState switch
                 {
-                    DeviceConnectionState.Connected => "接続済み",
-                    DeviceConnectionState.Connecting => "接続中…",
-                    DeviceConnectionState.Reconnecting => "再接続中…",
-                    DeviceConnectionState.Unsupported => "未対応の機器",
-                    _ => "未接続"
+                    DeviceConnectionState.Connected => Strings.Main_Connected,
+                    DeviceConnectionState.Connecting => Strings.Main_Connecting,
+                    DeviceConnectionState.Reconnecting => Strings.Main_Reconnecting,
+                    DeviceConnectionState.Unsupported => Strings.Main_Unsupported,
+                    _ => Strings.Status_Disconnected
                 };
             DeviceText.Text = _refreshInProgress
-                ? "ネットワークから最新状態を取得しています"
+                ? Strings.Main_FetchingState
                 : capabilities is null
                 ? SnapshotMessage(snapshot)
                 : $"{capabilities.DeviceInfo.ModelName}  •  API {capabilities.DeviceInfo.ApiVersion}";
@@ -207,15 +208,15 @@ public partial class MainWindow : Window
             }
             else
             {
-                VolumeUnitText.Text = _volumeDragging || _pendingVolume is not null ? "調整中" : "LEVEL";
+                VolumeUnitText.Text = _volumeDragging || _pendingVolume is not null ? Strings.Main_Adjusting : "LEVEL";
             }
 
             var blockers = _orchestrator.ActiveBlockers;
             var optimisticStatus = GetOptimisticStatusText();
             StatusText.Text = optimisticStatus ?? (blockers.Count > 0
-                ? $"電源ON禁止中  •  {string.Join(", ", blockers)}"
+                ? Strings.Format(Strings.Main_PowerBlocked, string.Join(", ", blockers))
                 : connected
-                    ? $"最終更新  {snapshot.UpdatedAt.ToLocalTime():HH:mm:ss}"
+                    ? Strings.Format(Strings.Main_LastUpdate, snapshot.UpdatedAt.ToLocalTime().ToString("HH:mm:ss", CultureInfo.CurrentCulture))
                     : SnapshotMessage(snapshot));
             StatusText.Foreground = optimisticStatus is not null
                 ? new SolidColorBrush(Color.FromRgb(101, 230, 209))
@@ -231,41 +232,43 @@ public partial class MainWindow : Window
 
     private static string SnapshotMessage(DeviceSnapshot snapshot) => snapshot.ErrorCode switch
     {
-        "ping_scan_confirmation_required" => "設定画面でネットワーク探索を確認してください",
-        "ping_scan_too_large" => "設定画面で接続先を指定してください",
-        "device_not_found" => "対応アンプが見つかりません",
-        _ => "アンプを検索しています…"
+        "ping_scan_confirmation_required" => Strings.Main_ConfirmPingInSettings,
+        "ping_scan_too_large" => Strings.Main_SpecifyHostInSettings,
+        "device_not_found" => Strings.Main_DeviceNotFound,
+        _ => Strings.Main_Searching
     };
 
     private string? GetOptimisticStatusText()
     {
         if (_refreshInProgress)
         {
-            return "最新状態を取得中…";
+            return Strings.Main_Refreshing;
         }
 
         if (_pendingPowerState is bool powerOn)
         {
-            return $"電源を{(powerOn ? "ON" : "STANDBY")}へ変更中  •  実機確認中";
+            return Strings.Format(Strings.Main_ChangingPower, powerOn ? "ON" : "STANDBY");
         }
 
         if (_pendingMuteState is bool muted)
         {
-            return $"ミュートを{(muted ? "ON" : "OFF")}へ変更中  •  実機確認中";
+            return Strings.Format(Strings.Main_ChangingMute, muted ? "ON" : "OFF");
         }
 
         if (_pendingVolume is decimal volume)
         {
-            return $"音量を {volume.ToString("0.#", CultureInfo.CurrentCulture)} へ変更中  •  実機確認中";
+            return Strings.Format(
+                Strings.Main_ChangingVolume,
+                volume.ToString("0.#", CultureInfo.CurrentCulture));
         }
 
         if (_pendingInput is not null)
         {
-            return $"ソースを {_pendingInput} へ変更中  •  実機確認中";
+            return Strings.Format(Strings.Main_ChangingSource, _pendingInput);
         }
 
         return _pendingSoundProgram is not null
-            ? $"音場を {_pendingSoundProgram} へ変更中  •  実機確認中"
+            ? Strings.Format(Strings.Main_ChangingSound, _pendingSoundProgram)
             : null;
     }
 
@@ -506,7 +509,7 @@ public partial class MainWindow : Window
         _displayedVolume = SnapVolume(_displayedVolume + delta);
         _pendingVolume = _displayedVolume;
         UpdateVolumeVisual();
-        VolumeUnitText.Text = "調整中";
+        VolumeUnitText.Text = Strings.Main_Adjusting;
         ApplyPendingStatusVisual();
     }
 
@@ -519,7 +522,7 @@ public partial class MainWindow : Window
         _displayedVolume = SnapVolume(_volumeMinimum + (decimal)ratio * (_volumeMaximum - _volumeMinimum));
         _pendingVolume = _displayedVolume;
         UpdateVolumeVisual();
-        VolumeUnitText.Text = "調整中";
+        VolumeUnitText.Text = Strings.Main_Adjusting;
         ApplyPendingStatusVisual();
     }
 
@@ -777,11 +780,11 @@ public partial class MainWindow : Window
     {
         MessageBox.Show(exception switch
         {
-            DeviceUnavailableException => "対応アンプに接続されていません。",
-            CapabilityNotSupportedException => "この機器では利用できない操作です。",
-            TimeoutException => "実機の状態確認がタイムアウトしました。現在の状態に表示を戻します。",
-            OperationCanceledException => "操作がタイムアウトしました。",
-            _ => "操作を完了できませんでした。ログを確認してください。"
+            DeviceUnavailableException => Strings.Error_NotConnected,
+            CapabilityNotSupportedException => Strings.Error_UnsupportedHere,
+            TimeoutException => Strings.Error_ConfirmTimeoutRevert,
+            OperationCanceledException => Strings.Error_OperationTimeout,
+            _ => Strings.Error_GenericWithLog
         }, "NAVA", MessageBoxButton.OK, MessageBoxImage.Warning);
     }
 

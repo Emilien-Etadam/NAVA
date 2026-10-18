@@ -3,6 +3,7 @@ name: CI
 on:
   push:
     branches: [main]
+    tags: ["v*"]
   pull_request:
     branches: [main]
 
@@ -41,5 +42,34 @@ jobs:
       - name: Verify formatting
         run: dotnet format NetworkAVAmp.Controller.sln --verify-no-changes --no-restore
 
-      - name: Verify self-contained publish
-        run: dotnet publish src/RxV4A.Desktop/RxV4A.Desktop.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o artifacts/publish
+      - name: Package portable distribution
+        shell: pwsh
+        run: ./build/Build-Distributions.ps1 -SkipInstaller
+
+      - name: Upload portable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nava-win-x64-portable
+          path: |
+            artifacts/distribution/*.zip
+            artifacts/distribution/SHA256SUMS.txt
+          if-no-files-found: error
+
+  release:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    needs: verify
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download portable artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nava-win-x64-portable
+          path: dist
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true

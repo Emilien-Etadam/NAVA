@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="App_StartupFailed" xml:space="preserve"><value>NAVA could not start.&#10;&#10;{0}</value></data>
+  <data name="Compact_Title" xml:space="preserve"><value>NAVA — Power</value></data>
+  <data name="Compact_DragTooltip" xml:space="preserve"><value>Drag to move</value></data>
+  <data name="Compact_Connecting" xml:space="preserve"><value>Connecting…</value></data>
+  <data name="Compact_PowerBlocked" xml:space="preserve"><value>ON blocked</value></data>
+  <data name="Compact_ActiveBlockers" xml:space="preserve"><value>Active blockers: {0}</value></data>
+  <data name="Compact_ConfirmingPower" xml:space="preserve"><value>Checking the amplifier power state.</value></data>
+  <data name="Compact_ConfirmTimeout" xml:space="preserve"><value>Checking the amplifier timed out. The display has returned to the last state received.</value></data>
+  <data name="Compact_OperationFailed" xml:space="preserve"><value>The operation could not be completed. The display has returned to the last state received.</value></data>
+  <data name="Main_Refresh" xml:space="preserve"><value>↻  Refresh</value></data>
+  <data name="Main_Settings" xml:space="preserve"><value>⚙  Settings</value></data>
+  <data name="Main_Minimize" xml:space="preserve"><value>Minimize</value></data>
+  <data name="Main_Close" xml:space="preserve"><value>Close</value></data>
+  <data name="Main_ScrollDrag" xml:space="preserve"><value>Scroll or drag</value></data>
+  <data name="Main_ConnectionInfo" xml:space="preserve"><value>Connection</value></data>
+  <data name="Main_Source" xml:space="preserve"><value>Source</value></data>
+  <data name="Main_SoundField" xml:space="preserve"><value>Sound field</value></data>
+  <data name="Main_Searching" xml:space="preserve"><value>Searching for the amplifier…</value></data>
+  <data name="Main_CheckingState" xml:space="preserve"><value>Checking status…</value></data>
+  <data name="Main_Connected" xml:space="preserve"><value>Connected</value></data>
+  <data name="Main_Connecting" xml:space="preserve"><value>Connecting…</value></data>
+  <data name="Main_Reconnecting" xml:space="preserve"><value>Reconnecting…</value></data>
+  <data name="Main_Unsupported" xml:space="preserve"><value>Unsupported device</value></data>
+  <data name="Main_FetchingState" xml:space="preserve"><value>Fetching the latest state from the network</value></data>
+  <data name="Main_Adjusting" xml:space="preserve"><value>Adjusting</value></data>
+  <data name="Main_PowerBlocked" xml:space="preserve"><value>Power-on blocked  •  {0}</value></data>
+  <data name="Main_LastUpdate" xml:space="preserve"><value>Last update  {0}</value></data>
+  <data name="Main_ConfirmPingInSettings" xml:space="preserve"><value>Confirm network discovery in Settings</value></data>
+  <data name="Main_SpecifyHostInSettings" xml:space="preserve"><value>Enter the address in Settings</value></data>
+  <data name="Main_DeviceNotFound" xml:space="preserve"><value>No compatible amplifier found</value></data>
+  <data name="Main_Refreshing" xml:space="preserve"><value>Fetching the latest state…</value></data>
+  <data name="Main_ChangingPower" xml:space="preserve"><value>Changing power to {0}  •  checking the amplifier</value></data>
+  <data name="Main_ChangingMute" xml:space="preserve"><value>Changing mute to {0}  •  checking the amplifier</value></data>
+  <data name="Main_ChangingVolume" xml:space="preserve"><value>Changing volume to {0}  •  checking the amplifier</value></data>
+  <data name="Main_ChangingSource" xml:space="preserve"><value>Changing source to {0}  •  checking the amplifier</value></data>
+  <data name="Main_ChangingSound" xml:space="preserve"><value>Changing sound field to {0}  •  checking the amplifier</value></data>
+  <data name="Hotkey_Title" xml:space="preserve"><value>NAVA — Hotkey settings</value></data>
+  <data name="Hotkey_Save" xml:space="preserve"><value>Save</value></data>
+  <data name="Hotkey_Close" xml:space="preserve"><value>Close</value></data>
+  <data name="Hotkey_HelpKeys" xml:space="preserve"><value>Choose the key and the action from the lists. Ctrl, Alt and Shift can be combined as you like.</value></data>
+  <data name="Hotkey_HelpAmount" xml:space="preserve"><value>For a volume up or volume down row, set how much the level changes on each press.</value></data>
+  <data name="Hotkey_Add" xml:space="preserve"><value>＋ Add</value></data>
+  <data name="Hotkey_Remove" xml:space="preserve"><value>－ Remove selected row</value></data>
+  <data name="Hotkey_Reset" xml:space="preserve"><value>Restore defaults</value></data>
+  <data name="Hotkey_Capture" xml:space="preserve"><value>Assign the key you press</value></data>
+  <data name="Hotkey_ColKey" xml:space="preserve"><value>Key</value></data>
+  <data name="Hotkey_ColAction" xml:space="preserve"><value>Action</value></data>
+  <data name="Hotkey_ColAmount" xml:space="preserve"><value>Step</value></data>
+  <data name="Hotkey_AmountTooltip" xml:space="preserve"><value>Volume change applied on each press of volume up or volume down</value></data>
+  <data name="Hotkey_Added" xml:space="preserve"><value>Hotkey row added. Choose a key and an action.</value></data>
+  <data name="Hotkey_SelectRowToDelete" xml:space="preserve"><value>Select the row to remove.</value></data>
+  <data name="Hotkey_Removed" xml:space="preserve"><value>Selected row removed. Save to apply.</value></data>
+  <data name="Hotkey_ResetDone" xml:space="preserve"><value>Restored to the 4 default shortcuts. Save to apply.</value></data>
+  <data name="Hotkey_Saved" xml:space="preserve"><value>Settings saved and global hotkeys registered again.</value></data>
+  <data name="Hotkey_SaveFailed" xml:space="preserve"><value>The settings could not be saved.&#10;&#10;{0}</value></data>
+  <data name="Hotkey_SelectRowFirst" xml:space="preserve"><value>Select a hotkey row first.</value></data>
+  <data name="Hotkey_PressKey" xml:space="preserve"><value>Press a letter, number, F key, navigation key or media key. Esc cancels.</value></data>
+  <data name="Hotkey_CaptureCancelled" xml:space="preserve"><value>Key capture cancelled.</value></data>
+  <data name="Hotkey_KeyUnsupported" xml:space="preserve"><value>This key cannot be used as a global hotkey.</value></data>
+  <data name="Hotkey_Captured" xml:space="preserve"><value>Captured: {0} (save to apply)</value></data>
+  <data name="Hotkey_ChooseFromList" xml:space="preserve"><value>Choose a hotkey from the supported list.</value></data>
+  <data name="Hotkey_AmountInvalid" xml:space="preserve"><value>The volume step must be a number greater than 0 and at most 100.</value></data>
+  <data name="Hotkey_Unassigned" xml:space="preserve"><value>Unassigned</value></data>
+  <data name="Hotkey_PowerToggle" xml:space="preserve"><value>Power: toggle on / standby</value></data>
+  <data name="Hotkey_PowerOn" xml:space="preserve"><value>Power: on</value></data>
+  <data name="Hotkey_PowerStandby" xml:space="preserve"><value>Power: standby</value></data>
+  <data name="Hotkey_MuteToggle" xml:space="preserve"><value>Mute: toggle</value></data>
+  <data name="Hotkey_MuteOn" xml:space="preserve"><value>Mute: on</value></data>
+  <data name="Hotkey_MuteOff" xml:space="preserve"><value>Mute: off</value></data>
+  <data name="Hotkey_VolumeUp" xml:space="preserve"><value>Volume: up</value></data>
+  <data name="Hotkey_VolumeDown" xml:space="preserve"><value>Volume: down</value></data>
+  <data name="Hotkey_Input" xml:space="preserve"><value>Source: {0}</value></data>
+  <data name="Hotkey_Sound" xml:space="preserve"><value>Sound field: {0}</value></data>
+  <data name="Hotkey_Activity" xml:space="preserve"><value>Activity: {0}</value></data>
+  <data name="Hotkey_Blocker" xml:space="preserve"><value>Block power-on: toggle {0}</value></data>
+  <data name="Hotkey_RegisteredAction" xml:space="preserve"><value>Registered action: {0}</value></data>
+  <data name="Hotkey_SavedAction" xml:space="preserve"><value>Saved: {0}</value></data>
+  <data name="Settings_Title" xml:space="preserve"><value>NAVA — Settings</value></data>
+  <data name="Settings_Heading" xml:space="preserve"><value>NAVA settings</value></data>
+  <data name="Settings_Subtitle" xml:space="preserve"><value>Network AV Amp Controller  •  connection, advanced features and hotkeys</value></data>
+  <data name="Settings_Connection" xml:space="preserve"><value>Connection</value></data>
+  <data name="Settings_Device" xml:space="preserve"><value>Device</value></data>
+  <data name="Settings_Power" xml:space="preserve"><value>Power</value></data>
+  <data name="Settings_InputVolume" xml:space="preserve"><value>Input / volume</value></data>
+  <data name="Settings_LastUpdate" xml:space="preserve"><value>Last update</value></data>
+  <data name="Settings_AmpOn" xml:space="preserve"><value>Amp on</value></data>
+  <data name="Settings_Standby" xml:space="preserve"><value>Standby</value></data>
+  <data name="Settings_Refresh" xml:space="preserve"><value>Refresh status</value></data>
+  <data name="Settings_Daily" xml:space="preserve"><value>Everyday controls</value></data>
+  <data name="Settings_Source" xml:space="preserve"><value>Source</value></data>
+  <data name="Settings_Switch" xml:space="preserve"><value>Switch</value></data>
+  <data name="Settings_Volume" xml:space="preserve"><value>Volume</value></data>
+  <data name="Settings_Apply" xml:space="preserve"><value>Apply</value></data>
+  <data name="Settings_Mute" xml:space="preserve"><value>Mute</value></data>
+  <data name="Settings_Enabled" xml:space="preserve"><value>On</value></data>
+  <data name="Settings_SoundProgram" xml:space="preserve"><value>Sound program</value></data>
+  <data name="Settings_Tone" xml:space="preserve"><value>Tone</value></data>
+  <data name="Settings_Balance" xml:space="preserve"><value>Balance</value></data>
+  <data name="Settings_BalanceTooltip" xml:space="preserve"><value>Negative = left, positive = right</value></data>
+  <data name="Settings_BassTooltip" xml:space="preserve"><value>Bass</value></data>
+  <data name="Settings_TrebleTooltip" xml:space="preserve"><value>Treble</value></data>
+  <data name="Settings_LowTooltip" xml:space="preserve"><value>Low</value></data>
+  <data name="Settings_MidTooltip" xml:space="preserve"><value>Mid</value></data>
+  <data name="Settings_HighTooltip" xml:space="preserve"><value>High</value></data>
+  <data name="Settings_CapabilityNote" xml:space="preserve"><value>Only the features reported by the connected device's official API are shown.</value></data>
+  <data name="Settings_Target" xml:space="preserve"><value>Address</value></data>
+  <data name="Settings_TargetHelp" xml:space="preserve"><value>When this is empty, NAVA tries the saved address, then SSDP, then the Windows neighbor cache. You can enter only an IP address or a host name.</value></data>
+  <data name="Settings_Nic" xml:space="preserve"><value>Network adapter</value></data>
+  <data name="Settings_SaveConnect" xml:space="preserve"><value>Save and connect</value></data>
+  <data name="Settings_Behavior" xml:space="preserve"><value>App behavior</value></data>
+  <data name="Settings_MinimizeToTray" xml:space="preserve"><value>Minimize to the notification area</value></data>
+  <data name="Settings_ShowCompactOnStartup" xml:space="preserve"><value>Show the mini power control when NAVA starts</value></data>
+  <data name="Settings_StartWithWindows" xml:space="preserve"><value>Run when Windows starts</value></data>
+  <data name="Settings_Hotkeys" xml:space="preserve"><value>Programmable shortcuts</value></data>
+  <data name="Settings_HotkeysPreparing" xml:space="preserve"><value>Preparing global hotkeys…</value></data>
+  <data name="Settings_HotkeyDefaults" xml:space="preserve"><value>Defaults: Ctrl+Alt+F13 = power toggle, F14 = mute toggle, F15 = volume −, F16 = volume +.</value></data>
+  <data name="Settings_HotkeyDetails" xml:space="preserve"><value>Detailed settings…</value></data>
+  <data name="Settings_LocalApi" xml:space="preserve"><value>Local API: http://127.0.0.1:55274/api/v1  ·  OpenAPI: /openapi/v1.json</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>Language</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>The language will be applied the next time NAVA starts.</value></data>
+  <data name="Language_System" xml:space="preserve"><value>Windows language</value></data>
+  <data name="Settings_StartupUnreadable" xml:space="preserve"><value>Windows startup settings could not be read.</value></data>
+  <data name="Settings_NicAuto" xml:space="preserve"><value>Automatic (every active adapter)</value></data>
+  <data name="Settings_NicDefaultRoute" xml:space="preserve"><value>  (default gateway)</value></data>
+  <data name="Settings_PowerToOn" xml:space="preserve"><value>Turning power on</value></data>
+  <data name="Settings_PowerToStandby" xml:space="preserve"><value>Entering standby</value></data>
+  <data name="Settings_ApplyingConnection" xml:space="preserve"><value>Applying connection settings…</value></data>
+  <data name="Settings_MinimizeYes" xml:space="preserve"><value>Minimizing moves NAVA to the notification area.</value></data>
+  <data name="Settings_MinimizeNo" xml:space="preserve"><value>Minimizing keeps the icon on the taskbar.</value></data>
+  <data name="Settings_CompactStartupYes" xml:space="preserve"><value>The mini power control will appear the next time NAVA starts.</value></data>
+  <data name="Settings_CompactStartupNo" xml:space="preserve"><value>The mini power control stays hidden when NAVA starts.</value></data>
+  <data name="Settings_StartupRegistering" xml:space="preserve"><value>Registering NAVA to start with Windows…</value></data>
+  <data name="Settings_StartupUnregistering" xml:space="preserve"><value>Removing NAVA from Windows startup…</value></data>
+  <data name="Settings_StartupConfirmFailed" xml:space="preserve"><value>Startup settings could not be confirmed.</value></data>
+  <data name="Settings_StartupChangeFailed" xml:space="preserve"><value>Windows startup settings could not be changed.</value></data>
+  <data name="Settings_StartupYes" xml:space="preserve"><value>NAVA starts when you sign in to Windows.</value></data>
+  <data name="Settings_StartupNo" xml:space="preserve"><value>NAVA does not start when you sign in to Windows.</value></data>
+  <data name="Settings_Connected" xml:space="preserve"><value>Connected</value></data>
+  <data name="Settings_Connecting" xml:space="preserve"><value>Connecting…</value></data>
+  <data name="Settings_Reconnecting" xml:space="preserve"><value>Reconnecting…</value></data>
+  <data name="Settings_Unsupported" xml:space="preserve"><value>Device out of scope</value></data>
+  <data name="Settings_PingConfirmPending" xml:space="preserve"><value>Waiting for ping discovery confirmation</value></data>
+  <data name="Settings_SubnetTooWide" xml:space="preserve"><value>Subnet is too wide</value></data>
+  <data name="Status_Disconnected" xml:space="preserve"><value>Not connected</value></data>
+  <data name="Settings_PingNeedsConfirm" xml:space="preserve"><value>Ping discovery of a wide subnet needs confirmation</value></data>
+  <data name="Settings_SubnetManual" xml:space="preserve"><value>The subnet is broader than /16. Enter the address manually</value></data>
+  <data name="Settings_NotFoundSsdp" xml:space="preserve"><value>Not found by SSDP or ping discovery</value></data>
+  <data name="Settings_RangeStep" xml:space="preserve"><value>{0} – {1} / step {2}</value></data>
+  <data name="Settings_CapabilityAfterConnect" xml:space="preserve"><value>After connecting, only the features reported by the official API are shown.</value></data>
+  <data name="Settings_RxV4aVerified" xml:space="preserve"><value>Verified on an RX-V4A. Unsupported features are hidden.</value></data>
+  <data name="Settings_UnverifiedModel" xml:space="preserve"><value>Compatible with the official API. This model has not been verified on a real device.</value></data>
+  <data name="Settings_RangeUnavailable" xml:space="preserve"><value>The value range could not be read from the device</value></data>
+  <data name="Settings_ChangingInput" xml:space="preserve"><value>Changing source to {0}</value></data>
+  <data name="Settings_ChangingVolume" xml:space="preserve"><value>Changing volume to {0}</value></data>
+  <data name="Settings_ChangingSound" xml:space="preserve"><value>Changing sound field to {0}</value></data>
+  <data name="Settings_ChangingFlag" xml:space="preserve"><value>Changing {0} to {1}</value></data>
+  <data name="Settings_ApplyingTone" xml:space="preserve"><value>Applying tone settings</value></data>
+  <data name="Settings_ApplyingEq" xml:space="preserve"><value>Applying EQ settings</value></data>
+  <data name="Settings_BalanceRequired" xml:space="preserve"><value>Enter a balance value.</value></data>
+  <data name="Settings_ChangingBalance" xml:space="preserve"><value>Changing balance to {0}</value></data>
+  <data name="Settings_NumberRequired" xml:space="preserve"><value>Enter a number.</value></data>
+  <data name="Settings_PingPrompt" xml:space="preserve"><value>SSDP and the automatic ping (prefix /24 or more specific) did not find a compatible amplifier.&#10;&#10;Ping a wider subnet that includes prefix /{0}, for up to {1:N0} hosts?&#10;&#10;Hosts that answer receive a read-only getDeviceInfo request. Amplifier settings are not changed.</value></data>
+  <data name="Settings_PingPromptTitle" xml:space="preserve"><value>Wide-subnet ping discovery</value></data>
+  <data name="Settings_HotkeysOk" xml:space="preserve"><value>Global hotkeys: {0} registered (MOD_NOREPEAT)</value></data>
+  <data name="Settings_HotkeysConflict" xml:space="preserve"><value>Global hotkeys: {0} registered, {1} in conflict ({2})</value></data>
+  <data name="Settings_BlockMismatch" xml:space="preserve"><value>Power-on is blocked ({0}), but the amplifier is on. It will not be turned off automatically.</value></data>
+  <data name="Settings_BlockActive" xml:space="preserve"><value>Power-on blocked: {0}</value></data>
+  <data name="Settings_ConfirmingDevice" xml:space="preserve"><value>checking the amplifier</value></data>
+  <data name="Settings_ActiveContexts" xml:space="preserve"><value>&#10;Active contexts: {0}</value></data>
+  <data name="Error_NotConnected" xml:space="preserve"><value>No compatible amplifier is connected.</value></data>
+  <data name="Error_UnsupportedHere" xml:space="preserve"><value>This operation is not available on this device.</value></data>
+  <data name="Error_CapabilityMissingOnDevice" xml:space="preserve"><value>This operation is not among the capabilities reported by the device.</value></data>
+  <data name="Error_ConfirmTimeoutRevert" xml:space="preserve"><value>Checking the amplifier timed out. The display returns to the current state.</value></data>
+  <data name="Error_OperationTimeout" xml:space="preserve"><value>The operation timed out.</value></data>
+  <data name="Error_GenericWithLog" xml:space="preserve"><value>The operation could not be completed. Check the log.</value></data>
+  <data name="Error_CheckInput" xml:space="preserve"><value>Check the values you entered.</value></data>
+  <data name="Error_CapabilityMissing" xml:space="preserve"><value>Device capabilities have not been retrieved yet.</value></data>
+  <data name="Error_OperationFailed" xml:space="preserve"><value>The operation could not be completed.</value></data>
+  <data name="Startup_ExeUnknown" xml:space="preserve"><value>NAVA's executable file could not be determined.</value></data>
+  <data name="Startup_KeyUnopenable" xml:space="preserve"><value>Windows startup settings could not be opened.</value></data>
+  <data name="Tray_Compact" xml:space="preserve"><value>Mini power control</value></data>
+  <data name="Tray_OpenMain" xml:space="preserve"><value>Open the control window</value></data>
+  <data name="Tray_OpenSettings" xml:space="preserve"><value>Open settings</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Exit</value></data>
+  <data name="Tray_Icon" xml:space="preserve"><value>NAVA - {0}</value></data>
+  <data name="Tray_Connecting" xml:space="preserve"><value>Connecting</value></data>
+  <data name="Tray_Status" xml:space="preserve"><value>Status: {0}</value></data>
+  <data name="Tray_StatusBlocked" xml:space="preserve"><value>Status: {0} / block: {1}</value></data>
+  <data name="Tray_ExternalOn" xml:space="preserve"><value>blocked, turned on outside</value></data>
+  <data name="Tray_PowerBlocked" xml:space="preserve"><value>power-on blocked</value></data>
+  <data name="Op_PowerBlocked" xml:space="preserve"><value>Power-on was blocked by an active context.</value></data>
+  <data name="Op_AlreadyPower" xml:space="preserve"><value>Power is already in the requested state.</value></data>
+  <data name="Op_PowerDone" xml:space="preserve"><value>The power command finished.</value></data>
+  <data name="Op_ContextAlreadyActive" xml:space="preserve"><value>The context is already active. The amplifier state is left unchanged.</value></data>
+  <data name="Op_ContextActivated" xml:space="preserve"><value>Context activated.</value></data>
+  <data name="Op_ContextActivatedPartial" xml:space="preserve"><value>Context activated, but some registered actions could not run.</value></data>
+  <data name="Op_ContextActivatedStandby" xml:space="preserve"><value>Context activated and the amplifier was set to standby.</value></data>
+  <data name="Op_ContextActivatedStandbyPartial" xml:space="preserve"><value>The amplifier was set to standby, but some registered actions could not run.</value></data>
+  <data name="Op_ContextStandbyFailed" xml:space="preserve"><value>The context is active, but the amplifier could not be set to standby.</value></data>
+  <data name="Op_ContextAlreadyInactive" xml:space="preserve"><value>The context is already inactive.</value></data>
+  <data name="Op_ContextDeactivated" xml:space="preserve"><value>Context deactivated. The amplifier is not turned on automatically.</value></data>
+  <data name="Op_ContextDeactivatedPartial" xml:space="preserve"><value>Context deactivated, but some registered actions could not run. The amplifier is not turned on automatically.</value></data>
+  <data name="Op_ActivityBlocked" xml:space="preserve"><value>The activity was blocked by a power-on block context.</value></data>
+  <data name="Op_ActivityConfig" xml:space="preserve"><value>Set exactly one input or one SCENE.</value></data>
+  <data name="Op_ActivityDone" xml:space="preserve"><value>The activity reached the requested state.</value></data>
+  <data name="Op_ActivityPartial" xml:space="preserve"><value>The amplifier commands finished, but some registered actions could not run.</value></data>
+  <data name="Op_ActivityFailed" xml:space="preserve"><value>The activity could not be completed.</value></data>
+  <data name="Op_ActivityDeactivated" xml:space="preserve"><value>Activity deactivated. The amplifier is not set to standby automatically.</value></data>
+  <data name="Op_ActivityDeactivatedPartial" xml:space="preserve"><value>Activity deactivated, but some registered actions could not run. The amplifier is left unchanged.</value></data>
+  <data name="Api_MainZoneUnavailable" xml:space="preserve"><value>Main zone status is unavailable.</value></data>
+  <data name="Api_InvalidPower" xml:space="preserve"><value>Set power to 'on' or 'standby'.</value></data>
+  <data name="Api_ForceNotAuthorized" xml:space="preserve"><value>Forcing power on from the API requires a dedicated permission that is not available yet.</value></data>
+  <data name="Api_ActivityNotFound" xml:space="preserve"><value>That activity is not registered.</value></data>
+  <data name="Api_ContextNotFound" xml:space="preserve"><value>That context is not registered.</value></data>
+  <data name="Api_ActionNotFound" xml:space="preserve"><value>That action id is not registered.</value></data>
+  <data name="Api_Timeout" xml:space="preserve"><value>The amplifier command timed out.</value></data>
+  <data name="Api_DeviceError" xml:space="preserve"><value>The amplifier could not complete the command.</value></data>
+  <data name="Api_Unreachable" xml:space="preserve"><value>The amplifier cannot be reached.</value></data>
+  <data name="Api_LoopbackOnly" xml:space="preserve"><value>The local API can bind only to a loopback address.</value></data>
+  <data name="Api_PortOutOfRange" xml:space="preserve"><value>The local API port is out of range.</value></data>
+  <data name="Action_Succeeded" xml:space="preserve"><value>Registered action completed.</value></data>
+  <data name="Action_Failed" xml:space="preserve"><value>The registered action could not run.</value></data>
+</root>

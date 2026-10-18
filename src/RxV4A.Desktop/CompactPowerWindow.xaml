@@ -1,7 +1,8 @@
 <Window x:Class="RxV4A.Desktop.CompactPowerWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="NAVA — 電源"
+        xmlns:loc="clr-namespace:RxV4A.Host.Localization;assembly=RxV4A.Host"
+        Title="{x:Static loc:Strings.Compact_Title}"
         Width="120" Height="38"
         MinWidth="64" MinHeight="24"
         MaxWidth="480" MaxHeight="180"
@@ -26,7 +27,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Border Grid.Column="0" x:Name="DragGrip" Background="Transparent" Cursor="SizeAll"
-                        ToolTip="ドラッグして移動" MouseLeftButtonDown="DragGrip_MouseLeftButtonDown">
+                        ToolTip="{x:Static loc:Strings.Compact_DragTooltip}" MouseLeftButtonDown="DragGrip_MouseLeftButtonDown">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Border Width="1" Height="22" Background="#71717A" Margin="0,0,2,0" />
                         <Border Width="1" Height="22" Background="#71717A" Margin="0,0,2,0" />
@@ -38,7 +39,7 @@
                             Visibility="Collapsed">
                     <Ellipse x:Name="StateIndicator" Width="7" Height="7"
                              Fill="#71717A" HorizontalAlignment="Center" />
-                    <TextBlock x:Name="StateText" Text="接続中…" Foreground="White"
+                    <TextBlock x:Name="StateText" Text="{x:Static loc:Strings.Compact_Connecting}" Foreground="White"
                                FontSize="6" TextAlignment="Center" Margin="0,1,0,0"
                                TextTrimming="CharacterEllipsis" />
                 </StackPanel>

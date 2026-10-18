@@ -1,6 +1,7 @@
 using System.Drawing;
 using RxV4A.Core;
 using RxV4A.Host;
+using RxV4A.Host.Localization;
 using Forms = System.Windows.Forms;
 
 namespace RxV4A.Desktop;
@@ -29,20 +30,20 @@ public sealed class TaskTrayController : IDisposable
         _mainWindow = mainWindow;
         _settingsWindow = settingsWindow;
         _compactPowerWindow = compactPowerWindow;
-        _statusItem = new Forms.ToolStripMenuItem("未接続") { Enabled = false };
+        _statusItem = new Forms.ToolStripMenuItem(Strings.Status_Disconnected) { Enabled = false };
 
         var menu = new Forms.ContextMenuStrip();
         menu.Items.Add(_statusItem);
         menu.Items.Add(new Forms.ToolStripSeparator());
-        menu.Items.Add("ミニ電源操作", null, (_, _) => _compactPowerWindow.ShowFromTray());
-        menu.Items.Add("操作画面を開く", null, (_, _) => ShowMainWindow());
-        menu.Items.Add("設定画面を開く", null, (_, _) => _settingsWindow.ShowFromTray());
-        menu.Items.Add("状態を更新", null, async (_, _) => await RefreshAsync());
+        menu.Items.Add(Strings.Tray_Compact, null, (_, _) => _compactPowerWindow.ShowFromTray());
+        menu.Items.Add(Strings.Tray_OpenMain, null, (_, _) => ShowMainWindow());
+        menu.Items.Add(Strings.Tray_OpenSettings, null, (_, _) => _settingsWindow.ShowFromTray());
+        menu.Items.Add(Strings.Settings_Refresh, null, async (_, _) => await RefreshAsync());
         menu.Items.Add(new Forms.ToolStripSeparator());
-        menu.Items.Add("アンプ ON", null, async (_, _) => await _mainWindow.ExecutePowerAsync(MainPower.On));
-        menu.Items.Add("Standby", null, async (_, _) => await _mainWindow.ExecutePowerAsync(MainPower.Standby));
+        menu.Items.Add(Strings.Settings_AmpOn, null, async (_, _) => await _mainWindow.ExecutePowerAsync(MainPower.On));
+        menu.Items.Add(Strings.Settings_Standby, null, async (_, _) => await _mainWindow.ExecutePowerAsync(MainPower.Standby));
         menu.Items.Add(new Forms.ToolStripSeparator());
-        menu.Items.Add("終了", null, (_, _) => requestExit());
+        menu.Items.Add(Strings.Tray_Exit, null, (_, _) => requestExit());
 
         _applicationIcon = string.IsNullOrWhiteSpace(Environment.ProcessPath)
             ? null
@@ -50,7 +51,7 @@ public sealed class TaskTrayController : IDisposable
         _notifyIcon = new Forms.NotifyIcon
         {
             Icon = _applicationIcon ?? SystemIcons.Application,
-            Text = "NAVA - 未接続",
+            Text = Strings.Format(Strings.Tray_Icon, Strings.Status_Disconnected),
             ContextMenuStrip = menu,
             Visible = true
         };
@@ -126,15 +127,15 @@ public sealed class TaskTrayController : IDisposable
     private void Update(DeviceSnapshot snapshot)
     {
         var state = snapshot.ConnectionState == DeviceConnectionState.Connected
-            ? snapshot.MainZone?.Power ?? "接続中"
-            : "未接続";
+            ? snapshot.MainZone?.Power ?? Strings.Tray_Connecting
+            : Strings.Status_Disconnected;
         var contexts = _orchestrator.GetContexts();
         var blockers = contexts.Where(item => item.Active).Select(item => item.Id).ToArray();
         var mismatch = contexts.Any(item => item.PowerMismatchWarning);
         _statusItem.Text = blockers.Length == 0
-            ? $"状態: {state}"
-            : $"状態: {state} / ブロック: {string.Join(",", blockers)}";
-        var suffix = blockers.Length == 0 ? state : mismatch ? "禁止中・外部ON" : "電源ON禁止中";
-        _notifyIcon.Text = $"NAVA - {suffix}";
+            ? Strings.Format(Strings.Tray_Status, state)
+            : Strings.Format(Strings.Tray_StatusBlocked, state, string.Join(",", blockers));
+        var suffix = blockers.Length == 0 ? state : mismatch ? Strings.Tray_ExternalOn : Strings.Tray_PowerBlocked;
+        _notifyIcon.Text = Strings.Format(Strings.Tray_Icon, suffix);
     }
 }

@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 using RxV4A.Core;
 using RxV4A.Host;
+using RxV4A.Host.Localization;
 
 namespace RxV4A.Desktop;
 
@@ -82,19 +83,19 @@ public partial class HotkeySettingsWindow : Window
         GlobalHotkeys.Add(row);
         GlobalHotkeysGrid.SelectedItem = row;
         GlobalHotkeysGrid.ScrollIntoView(row);
-        CaptureStatusText.Text = "ホットキー行を追加しました。キーとアクションを選択してください。";
+        CaptureStatusText.Text = Strings.Hotkey_Added;
     }
 
     private void RemoveHotkeyButton_Click(object sender, RoutedEventArgs e)
     {
         if (GlobalHotkeysGrid.SelectedItem is not GlobalHotkeyRow row)
         {
-            CaptureStatusText.Text = "削除する行を選択してください。";
+            CaptureStatusText.Text = Strings.Hotkey_SelectRowToDelete;
             return;
         }
 
         GlobalHotkeys.Remove(row);
-        CaptureStatusText.Text = "選択した行を削除しました。保存すると反映されます。";
+        CaptureStatusText.Text = Strings.Hotkey_Removed;
     }
 
     private void ResetHotkeysButton_Click(object sender, RoutedEventArgs e)
@@ -105,7 +106,7 @@ public partial class HotkeySettingsWindow : Window
             GlobalHotkeys.Add(ToRow(binding));
         }
 
-        CaptureStatusText.Text = "既定の4件へ戻しました。保存すると反映されます。";
+        CaptureStatusText.Text = Strings.Hotkey_ResetDone;
     }
 
     private async void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -127,7 +128,7 @@ public partial class HotkeySettingsWindow : Window
 
             _globalHotkeys.Reload();
             System.Windows.MessageBox.Show(
-                "設定を保存し、グローバルホットキーを再登録しました。",
+                Strings.Hotkey_Saved,
                 "NAVA",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);
@@ -144,7 +145,7 @@ public partial class HotkeySettingsWindow : Window
             }
 
             System.Windows.MessageBox.Show(
-                $"設定を保存できません。\n\n{exception.Message}",
+                Strings.Format(Strings.Hotkey_SaveFailed, exception.Message),
                 "NAVA",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
@@ -157,7 +158,7 @@ public partial class HotkeySettingsWindow : Window
         GlobalHotkeysGrid.CommitEdit(System.Windows.Controls.DataGridEditingUnit.Row, true);
         if (GlobalHotkeysGrid.SelectedItem is not GlobalHotkeyRow)
         {
-            CaptureStatusText.Text = "先にホットキー行を選択してください。";
+            CaptureStatusText.Text = Strings.Hotkey_SelectRowFirst;
             return;
         }
 
@@ -165,7 +166,7 @@ public partial class HotkeySettingsWindow : Window
         _globalHotkeys.Suspend();
         Activate();
         Focus();
-        CaptureStatusText.Text = "対応する英数字、Fキー、移動キー、メディアキーを押してください。Escで中止します。";
+        CaptureStatusText.Text = Strings.Hotkey_PressKey;
     }
 
     private void Window_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -179,14 +180,14 @@ public partial class HotkeySettingsWindow : Window
         var key = e.Key == Key.System ? e.SystemKey : e.Key;
         if (key == Key.Escape)
         {
-            EndCapture("キー取得を中止しました。");
+            EndCapture(Strings.Hotkey_CaptureCancelled);
             return;
         }
 
         var virtualKey = KeyInterop.VirtualKeyFromKey(key);
         if (!HotkeyGesture.IsSupportedVirtualKey(virtualKey))
         {
-            CaptureStatusText.Text = "このキーはグローバルホットキーに使用できません。";
+            CaptureStatusText.Text = Strings.Hotkey_KeyUnsupported;
             return;
         }
 
@@ -206,7 +207,7 @@ public partial class HotkeySettingsWindow : Window
             hotkey.Shift = gesture.Shift;
         }
 
-        EndCapture($"取得: {gesture.DisplayName}（保存すると反映されます）");
+        EndCapture(Strings.Format(Strings.Hotkey_Captured, gesture.DisplayName));
     }
 
     private void EndCapture(string message)
@@ -220,7 +221,7 @@ public partial class HotkeySettingsWindow : Window
     {
         if (!HotkeyGesture.IsSupportedVirtualKey(row.VirtualKey))
         {
-            throw new InvalidDataException("対応リストからホットキーを選択してください。");
+            throw new InvalidDataException(Strings.Hotkey_ChooseFromList);
         }
 
         var actionId = string.IsNullOrWhiteSpace(row.ActionId) ? null : row.ActionId.Trim();
@@ -231,7 +232,7 @@ public partial class HotkeySettingsWindow : Window
                  !decimal.TryParse(row.AmountText, NumberStyles.Number, CultureInfo.InvariantCulture, out parsed)) ||
                 parsed is <= 0 or > 100)
             {
-                throw new InvalidDataException("音量の増減量は0より大きく100以下の数値で指定してください。");
+                throw new InvalidDataException(Strings.Hotkey_AmountInvalid);
             }
 
             amount = parsed;
@@ -264,43 +265,43 @@ public partial class HotkeySettingsWindow : Window
             }
         }
 
-        Add(string.Empty, "未割り当て");
-        Add(HotkeyActionIds.PowerToggle, "電源：ON／スタンバイ切り替え");
-        Add(HotkeyActionIds.PowerOn, "電源：ON");
-        Add(HotkeyActionIds.PowerStandby, "電源：スタンバイ");
-        Add(HotkeyActionIds.MuteToggle, "ミュート：切り替え");
-        Add(HotkeyActionIds.MuteOn, "ミュート：ON");
-        Add(HotkeyActionIds.MuteOff, "ミュート：OFF");
-        Add(HotkeyActionIds.VolumeUp, "音量：上げる");
-        Add(HotkeyActionIds.VolumeDown, "音量：下げる");
+        Add(string.Empty, Strings.Hotkey_Unassigned);
+        Add(HotkeyActionIds.PowerToggle, Strings.Hotkey_PowerToggle);
+        Add(HotkeyActionIds.PowerOn, Strings.Hotkey_PowerOn);
+        Add(HotkeyActionIds.PowerStandby, Strings.Hotkey_PowerStandby);
+        Add(HotkeyActionIds.MuteToggle, Strings.Hotkey_MuteToggle);
+        Add(HotkeyActionIds.MuteOn, Strings.Hotkey_MuteOn);
+        Add(HotkeyActionIds.MuteOff, Strings.Hotkey_MuteOff);
+        Add(HotkeyActionIds.VolumeUp, Strings.Hotkey_VolumeUp);
+        Add(HotkeyActionIds.VolumeDown, Strings.Hotkey_VolumeDown);
 
         var zone = _deviceManager.Snapshot.Capabilities?.FindZone("main");
         foreach (var input in zone?.Inputs.Where(item => ApplicationScope.IsOperationalInput(item.Id)) ?? [])
         {
-            Add(HotkeyActionIds.SelectInput(input.Id), $"ソース：{input.Id}");
+            Add(HotkeyActionIds.SelectInput(input.Id), Strings.Format(Strings.Hotkey_Input, input.Id));
         }
 
         foreach (var program in zone?.SoundPrograms ?? [])
         {
-            Add(HotkeyActionIds.SelectSoundProgram(program), $"音場：{program}");
+            Add(HotkeyActionIds.SelectSoundProgram(program), Strings.Format(Strings.Hotkey_Sound, program));
         }
 
         lock (_settings.SyncRoot)
         {
             foreach (var activityId in _settings.Activities.Keys.OrderBy(item => item, StringComparer.OrdinalIgnoreCase))
             {
-                Add(HotkeyActionIds.ActivateActivity(activityId), $"アクティビティ：{activityId}");
+                Add(HotkeyActionIds.ActivateActivity(activityId), Strings.Format(Strings.Hotkey_Activity, activityId));
             }
 
             foreach (var blockerId in _settings.PowerOnBlockers.OrderBy(item => item, StringComparer.OrdinalIgnoreCase))
             {
-                Add(HotkeyActionIds.ToggleBlocker(blockerId), $"電源ON禁止：{blockerId}を切り替え");
+                Add(HotkeyActionIds.ToggleBlocker(blockerId), Strings.Format(Strings.Hotkey_Blocker, blockerId));
             }
         }
 
         foreach (var action in _registeredActions.GetRegisteredActions())
         {
-            Add(HotkeyActionIds.RegisteredAction(action.Id), $"登録アクション：{action.DisplayName}");
+            Add(HotkeyActionIds.RegisteredAction(action.Id), Strings.Format(Strings.Hotkey_RegisteredAction, action.DisplayName));
         }
 
         lock (_settings.SyncRoot)
@@ -308,7 +309,7 @@ public partial class HotkeySettingsWindow : Window
             foreach (var savedActionId in _settings.GlobalHotkeys.Select(item => item.ActionId)
                          .Where(item => !string.IsNullOrWhiteSpace(item)))
             {
-                Add(savedActionId!, $"保存済み：{savedActionId}");
+                Add(savedActionId!, Strings.Format(Strings.Hotkey_SavedAction, savedActionId));
             }
         }
 

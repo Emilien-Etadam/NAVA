@@ -3,6 +3,7 @@ using System.Windows;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using RxV4A.Host;
+using RxV4A.Host.Localization;
 
 namespace RxV4A.Desktop;
 
@@ -16,6 +17,7 @@ public partial class App : System.Windows.Application
 
     protected override async void OnStartup(StartupEventArgs e)
     {
+        UiLanguageSelection.ApplyPersistedOrSystem();
         base.OnStartup(e);
 
         try
@@ -60,7 +62,7 @@ public partial class App : System.Windows.Application
         {
             TryWriteStartupError(exception);
             System.Windows.MessageBox.Show(
-                $"NAVAを開始できませんでした。\n\n{exception.Message}",
+                Strings.Format(Strings.App_StartupFailed, exception.Message),
                 "NAVA",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
@@ -107,7 +109,7 @@ public partial class App : System.Windows.Application
         }
         catch
         {
-            // 起動エラーの表示を、診断ログの書き込み失敗で妨げない。
+            // A failed diagnostic log must not hide the startup error dialog.
         }
     }
 
@@ -119,7 +121,7 @@ public partial class App : System.Windows.Application
         }
         catch
         {
-            // 正常起動は、古い診断ログを削除できなくても続行する。
+            // A successful start continues even if an old diagnostic log cannot be deleted.
         }
     }
 

@@ -1,7 +1,8 @@
 [CmdletBinding()]
 param(
     [string]$Configuration = "Release",
-    [string]$InnoCompilerPath
+    [string]$InnoCompilerPath,
+    [switch]$SkipInstaller
 )
 
 $ErrorActionPreference = "Stop"
@@ -15,10 +16,14 @@ $distributionRoot = Join-Path $repositoryRoot "artifacts\distribution"
 [xml]$buildProperties = Get-Content -LiteralPath $propertiesPath
 $versionNode = $buildProperties.SelectSingleNode("//VersionPrefix")
 if ($null -eq $versionNode -or [string]::IsNullOrWhiteSpace($versionNode.InnerText)) {
-    throw "Directory.Build.propsからVersionPrefixを取得できませんでした。"
+    throw "Impossible de lire VersionPrefix dans Directory.Build.props."
 }
 
 $version = $versionNode.InnerText.Trim()
+$suffixNode = $buildProperties.SelectSingleNode("//VersionSuffix")
+if ($null -ne $suffixNode -and -not [string]::IsNullOrWhiteSpace($suffixNode.InnerText)) {
+    $version = "$version-$($suffixNode.InnerText.Trim())"
+}
 $portableName = "NAVA-$version-win-x64-portable"
 $portableDirectory = Join-Path $distributionRoot $portableName
 $publishDirectory = Join-Path $distributionRoot "publish"
@@ -29,7 +34,7 @@ $artifactsFullPath = [System.IO.Path]::GetFullPath((Join-Path $repositoryRoot "a
 if (-not $distributionFullPath.StartsWith(
         $artifactsFullPath + [System.IO.Path]::DirectorySeparatorChar,
         [System.StringComparison]::OrdinalIgnoreCase)) {
-    throw "配布物の出力先がartifacts配下ではありません。"
+    throw "Le dossier de sortie n'est pas sous artifacts."
 }
 
 if (Test-Path -LiteralPath $distributionFullPath) {
@@ -49,7 +54,7 @@ dotnet publish $projectPath `
     -p:DebugSymbols=false `
     --output $publishDirectory
 if ($LASTEXITCODE -ne 0) {
-    throw "NAVAの発行に失敗しました。"
+    throw "La publication de NAVA a échoué."
 }
 
 Copy-Item -Path (Join-Path $publishDirectory "*") -Destination $portableDirectory -Recurse
@@ -64,7 +69,7 @@ Copy-Item -LiteralPath (Join-Path $repositoryRoot "doc\NAVA05.png") -Destination
 
 Compress-Archive -LiteralPath $portableDirectory -DestinationPath $portableArchive -CompressionLevel Optimal
 
-if ([string]::IsNullOrWhiteSpace($InnoCompilerPath)) {
+if (-not $SkipInstaller -and [string]::IsNullOrWhiteSpace($InnoCompilerPath)) {
     $knownCompilerPaths = @(
         (Join-Path $env:LOCALAPPDATA "Programs\Inno Setup 6\ISCC.exe"),
         "C:\Program Files (x86)\Inno Setup 6\ISCC.exe",
@@ -75,30 +80,41 @@ if ([string]::IsNullOrWhiteSpace($InnoCompilerPath)) {
         Select-Object -First 1
 }
 
-if ([string]::IsNullOrWhiteSpace($InnoCompilerPath) -or
-    -not (Test-Path -LiteralPath $InnoCompilerPath)) {
-    throw "Inno Setup 6が見つかりません。-InnoCompilerPathでISCC.exeを指定してください。"
+if (-not $SkipInstaller -and (
+    [string]::IsNullOrWhiteSpace($InnoCompilerPath) -or
+    -not (Test-Path -LiteralPath $InnoCompilerPath))) {
+    throw "Inno Setup 6 est introuvable. Indiquez ISCC.exe avec -InnoCompilerPath."
 }
 
-$installerScript = Join-Path $repositoryRoot "installer\NAVA.iss"
-& $InnoCompilerPath `
-    "/DMyAppVersion=$version" `
-    "/DSourceDir=$portableDirectory" `
-    "/DOutputDir=$distributionRoot" `
-    $installerScript
-if ($LASTEXITCODE -ne 0) {
-    throw "NAVAインストーラーの作成に失敗しました。"
+if (-not $SkipInstaller) {
+    $installerScript = Join-Path $repositoryRoot "installer\NAVA.iss"
+    & $InnoCompilerPath `
+        "/DMyAppVersion=$version" `
+        "/DSourceDir=$portableDirectory" `
+        "/DOutputDir=$distributionRoot" `
+        $installerScript
+    if ($LASTEXITCODE -ne 0) {
+        throw "La création de l'installateur NAVA a échoué."
+    }
 }
 
 Remove-Item -LiteralPath $publishDirectory -Recurse -Force
 
 $installerPath = Join-Path $distributionRoot "NAVA-$version-win-x64-setup.exe"
 $checksumPath = Join-Path $distributionRoot "SHA256SUMS.txt"
-$checksums = Get-FileHash -Algorithm SHA256 -LiteralPath $portableArchive, $installerPath
+$hashedFiles = @($portableArchive)
+if (-not $SkipInstaller) {
+    $hashedFiles += $installerPath
+}
+$checksums = Get-FileHash -Algorithm SHA256 -LiteralPath $hashedFiles
 $checksumLines = $checksums | ForEach-Object {
     "$($_.Hash.ToLowerInvariant())  $([System.IO.Path]::GetFileName($_.Path))"
 }
 Set-Content -LiteralPath $checksumPath -Value $checksumLines -Encoding utf8NoBOM
 
-Get-Item -LiteralPath $portableArchive, $installerPath, $checksumPath |
+$publishedFiles = @($portableArchive, $checksumPath)
+if (-not $SkipInstaller) {
+    $publishedFiles += $installerPath
+}
+Get-Item -LiteralPath $publishedFiles |
     Select-Object Name, Length, LastWriteTime

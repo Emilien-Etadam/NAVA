@@ -22,6 +22,9 @@ public sealed class AppSettings
 
     public bool MinimizeToTray { get; set; } = true;
 
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? UiLanguage { get; set; }
+
     public string? PreferredDeviceId { get; set; }
 
     public int RequestTimeoutSeconds { get; set; } = 4;
@@ -251,10 +254,17 @@ public sealed class JsonSettingsStore : ISettingsStore
 
     public JsonSettingsStore(string? localAppDataPath = null)
     {
+        var paths = CandidateSettingsPaths(localAppDataPath);
+        SettingsPath = paths[0];
+        _legacySettingsPaths = paths.Skip(1).ToArray();
+    }
+
+    internal static IReadOnlyList<string> CandidateSettingsPaths(string? localAppDataPath = null)
+    {
         var root = localAppDataPath ?? Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        SettingsPath = Path.Combine(root, "NAVA", "settings.json");
-        _legacySettingsPaths =
+        return
         [
+            Path.Combine(root, "NAVA", "settings.json"),
             Path.Combine(root, "Network AV Amp Controller", "settings.json"),
             Path.Combine(root, "Yamaha AV Manager", "settings.json")
         ];

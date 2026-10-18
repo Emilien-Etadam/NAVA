@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="App_StartupFailed" xml:space="preserve"><value>NAVAを開始できませんでした。&#10;&#10;{0}</value></data>
+  <data name="Compact_Title" xml:space="preserve"><value>NAVA — 電源</value></data>
+  <data name="Compact_DragTooltip" xml:space="preserve"><value>ドラッグして移動</value></data>
+  <data name="Compact_Connecting" xml:space="preserve"><value>接続中…</value></data>
+  <data name="Compact_PowerBlocked" xml:space="preserve"><value>ON禁止中</value></data>
+  <data name="Compact_ActiveBlockers" xml:space="preserve"><value>有効なブロッカー: {0}</value></data>
+  <data name="Compact_ConfirmingPower" xml:space="preserve"><value>実機の電源状態を確認しています。</value></data>
+  <data name="Compact_ConfirmTimeout" xml:space="preserve"><value>実機の状態確認がタイムアウトしました。取得できた状態へ表示を戻しました。</value></data>
+  <data name="Compact_OperationFailed" xml:space="preserve"><value>操作を完了できませんでした。取得できた実機状態へ表示を戻しました。</value></data>
+  <data name="Main_Refresh" xml:space="preserve"><value>↻  更新</value></data>
+  <data name="Main_Settings" xml:space="preserve"><value>⚙  設定</value></data>
+  <data name="Main_Minimize" xml:space="preserve"><value>最小化</value></data>
+  <data name="Main_Close" xml:space="preserve"><value>閉じる</value></data>
+  <data name="Main_ScrollDrag" xml:space="preserve"><value>スクロール / ドラッグ</value></data>
+  <data name="Main_ConnectionInfo" xml:space="preserve"><value>接続情報</value></data>
+  <data name="Main_Source" xml:space="preserve"><value>ソース</value></data>
+  <data name="Main_SoundField" xml:space="preserve"><value>音場</value></data>
+  <data name="Main_Searching" xml:space="preserve"><value>アンプを検索しています…</value></data>
+  <data name="Main_CheckingState" xml:space="preserve"><value>状態を確認中…</value></data>
+  <data name="Main_Connected" xml:space="preserve"><value>接続済み</value></data>
+  <data name="Main_Connecting" xml:space="preserve"><value>接続中…</value></data>
+  <data name="Main_Reconnecting" xml:space="preserve"><value>再接続中…</value></data>
+  <data name="Main_Unsupported" xml:space="preserve"><value>未対応の機器</value></data>
+  <data name="Main_FetchingState" xml:space="preserve"><value>ネットワークから最新状態を取得しています</value></data>
+  <data name="Main_Adjusting" xml:space="preserve"><value>調整中</value></data>
+  <data name="Main_PowerBlocked" xml:space="preserve"><value>電源ON禁止中  •  {0}</value></data>
+  <data name="Main_LastUpdate" xml:space="preserve"><value>最終更新  {0}</value></data>
+  <data name="Main_ConfirmPingInSettings" xml:space="preserve"><value>設定画面でネットワーク探索を確認してください</value></data>
+  <data name="Main_SpecifyHostInSettings" xml:space="preserve"><value>設定画面で接続先を指定してください</value></data>
+  <data name="Main_DeviceNotFound" xml:space="preserve"><value>対応アンプが見つかりません</value></data>
+  <data name="Main_Refreshing" xml:space="preserve"><value>最新状態を取得中…</value></data>
+  <data name="Main_ChangingPower" xml:space="preserve"><value>電源を{0}へ変更中  •  実機確認中</value></data>
+  <data name="Main_ChangingMute" xml:space="preserve"><value>ミュートを{0}へ変更中  •  実機確認中</value></data>
+  <data name="Main_ChangingVolume" xml:space="preserve"><value>音量を {0} へ変更中  •  実機確認中</value></data>
+  <data name="Main_ChangingSource" xml:space="preserve"><value>ソースを {0} へ変更中  •  実機確認中</value></data>
+  <data name="Main_ChangingSound" xml:space="preserve"><value>音場を {0} へ変更中  •  実機確認中</value></data>
+  <data name="Hotkey_Title" xml:space="preserve"><value>NAVA — ホットキー設定</value></data>
+  <data name="Hotkey_Save" xml:space="preserve"><value>保存</value></data>
+  <data name="Hotkey_Close" xml:space="preserve"><value>閉じる</value></data>
+  <data name="Hotkey_HelpKeys" xml:space="preserve"><value>キーとアクションをリストから選択します。Ctrl / Alt / Shiftは任意で組み合わせられます。</value></data>
+  <data name="Hotkey_HelpAmount" xml:space="preserve"><value>音量アップ／ダウンを選んだ行では、1回押したときの増減量を指定してください。</value></data>
+  <data name="Hotkey_Add" xml:space="preserve"><value>＋ 追加</value></data>
+  <data name="Hotkey_Remove" xml:space="preserve"><value>－ 選択行を削除</value></data>
+  <data name="Hotkey_Reset" xml:space="preserve"><value>既定に戻す</value></data>
+  <data name="Hotkey_Capture" xml:space="preserve"><value>押したキーを選択行へ設定</value></data>
+  <data name="Hotkey_ColKey" xml:space="preserve"><value>キー</value></data>
+  <data name="Hotkey_ColAction" xml:space="preserve"><value>アクション</value></data>
+  <data name="Hotkey_ColAmount" xml:space="preserve"><value>増減量</value></data>
+  <data name="Hotkey_AmountTooltip" xml:space="preserve"><value>音量アップ／ダウン時の1回あたりの増減量</value></data>
+  <data name="Hotkey_Added" xml:space="preserve"><value>ホットキー行を追加しました。キーとアクションを選択してください。</value></data>
+  <data name="Hotkey_SelectRowToDelete" xml:space="preserve"><value>削除する行を選択してください。</value></data>
+  <data name="Hotkey_Removed" xml:space="preserve"><value>選択した行を削除しました。保存すると反映されます。</value></data>
+  <data name="Hotkey_ResetDone" xml:space="preserve"><value>既定の4件へ戻しました。保存すると反映されます。</value></data>
+  <data name="Hotkey_Saved" xml:space="preserve"><value>設定を保存し、グローバルホットキーを再登録しました。</value></data>
+  <data name="Hotkey_SaveFailed" xml:space="preserve"><value>設定を保存できません。&#10;&#10;{0}</value></data>
+  <data name="Hotkey_SelectRowFirst" xml:space="preserve"><value>先にホットキー行を選択してください。</value></data>
+  <data name="Hotkey_PressKey" xml:space="preserve"><value>対応する英数字、Fキー、移動キー、メディアキーを押してください。Escで中止します。</value></data>
+  <data name="Hotkey_CaptureCancelled" xml:space="preserve"><value>キー取得を中止しました。</value></data>
+  <data name="Hotkey_KeyUnsupported" xml:space="preserve"><value>このキーはグローバルホットキーに使用できません。</value></data>
+  <data name="Hotkey_Captured" xml:space="preserve"><value>取得: {0}（保存すると反映されます）</value></data>
+  <data name="Hotkey_ChooseFromList" xml:space="preserve"><value>対応リストからホットキーを選択してください。</value></data>
+  <data name="Hotkey_AmountInvalid" xml:space="preserve"><value>音量の増減量は0より大きく100以下の数値で指定してください。</value></data>
+  <data name="Hotkey_Unassigned" xml:space="preserve"><value>未割り当て</value></data>
+  <data name="Hotkey_PowerToggle" xml:space="preserve"><value>電源：ON／スタンバイ切り替え</value></data>
+  <data name="Hotkey_PowerOn" xml:space="preserve"><value>電源：ON</value></data>
+  <data name="Hotkey_PowerStandby" xml:space="preserve"><value>電源：スタンバイ</value></data>
+  <data name="Hotkey_MuteToggle" xml:space="preserve"><value>ミュート：切り替え</value></data>
+  <data name="Hotkey_MuteOn" xml:space="preserve"><value>ミュート：ON</value></data>
+  <data name="Hotkey_MuteOff" xml:space="preserve"><value>ミュート：OFF</value></data>
+  <data name="Hotkey_VolumeUp" xml:space="preserve"><value>音量：上げる</value></data>
+  <data name="Hotkey_VolumeDown" xml:space="preserve"><value>音量：下げる</value></data>
+  <data name="Hotkey_Input" xml:space="preserve"><value>ソース：{0}</value></data>
+  <data name="Hotkey_Sound" xml:space="preserve"><value>音場：{0}</value></data>
+  <data name="Hotkey_Activity" xml:space="preserve"><value>アクティビティ：{0}</value></data>
+  <data name="Hotkey_Blocker" xml:space="preserve"><value>電源ON禁止：{0}を切り替え</value></data>
+  <data name="Hotkey_RegisteredAction" xml:space="preserve"><value>登録アクション：{0}</value></data>
+  <data name="Hotkey_SavedAction" xml:space="preserve"><value>保存済み：{0}</value></data>
+  <data name="Settings_Title" xml:space="preserve"><value>NAVA — 設定</value></data>
+  <data name="Settings_Heading" xml:space="preserve"><value>NAVA 設定</value></data>
+  <data name="Settings_Subtitle" xml:space="preserve"><value>Network AV Amp Controller  •  接続先・詳細機能・プログラマブルキーボード</value></data>
+  <data name="Settings_Connection" xml:space="preserve"><value>接続</value></data>
+  <data name="Settings_Device" xml:space="preserve"><value>機器</value></data>
+  <data name="Settings_Power" xml:space="preserve"><value>電源</value></data>
+  <data name="Settings_InputVolume" xml:space="preserve"><value>入力 / 音量</value></data>
+  <data name="Settings_LastUpdate" xml:space="preserve"><value>最終更新</value></data>
+  <data name="Settings_AmpOn" xml:space="preserve"><value>アンプ ON</value></data>
+  <data name="Settings_Standby" xml:space="preserve"><value>Standby</value></data>
+  <data name="Settings_Refresh" xml:space="preserve"><value>状態を更新</value></data>
+  <data name="Settings_Daily" xml:space="preserve"><value>日常操作</value></data>
+  <data name="Settings_Source" xml:space="preserve"><value>ソース</value></data>
+  <data name="Settings_Switch" xml:space="preserve"><value>切り替え</value></data>
+  <data name="Settings_Volume" xml:space="preserve"><value>音量</value></data>
+  <data name="Settings_Apply" xml:space="preserve"><value>設定</value></data>
+  <data name="Settings_Mute" xml:space="preserve"><value>ミュート</value></data>
+  <data name="Settings_Enabled" xml:space="preserve"><value>有効</value></data>
+  <data name="Settings_SoundProgram" xml:space="preserve"><value>音場プログラム</value></data>
+  <data name="Settings_Tone" xml:space="preserve"><value>トーン</value></data>
+  <data name="Settings_Balance" xml:space="preserve"><value>バランス</value></data>
+  <data name="Settings_BalanceTooltip" xml:space="preserve"><value>負数=左、正数=右</value></data>
+  <data name="Settings_BassTooltip" xml:space="preserve"><value>Bass</value></data>
+  <data name="Settings_TrebleTooltip" xml:space="preserve"><value>Treble</value></data>
+  <data name="Settings_LowTooltip" xml:space="preserve"><value>Low</value></data>
+  <data name="Settings_MidTooltip" xml:space="preserve"><value>Mid</value></data>
+  <data name="Settings_HighTooltip" xml:space="preserve"><value>High</value></data>
+  <data name="Settings_CapabilityNote" xml:space="preserve"><value>接続機器の公式APIから取得した対応機能だけを表示します。</value></data>
+  <data name="Settings_Target" xml:space="preserve"><value>接続先</value></data>
+  <data name="Settings_TargetHelp" xml:space="preserve"><value>空欄なら保存済み接続先、SSDP、Windows近隣キャッシュの順に探索します。IPアドレスまたはホスト名だけを指定できます。</value></data>
+  <data name="Settings_Nic" xml:space="preserve"><value>探索するNIC</value></data>
+  <data name="Settings_SaveConnect" xml:space="preserve"><value>保存して接続</value></data>
+  <data name="Settings_Behavior" xml:space="preserve"><value>アプリ動作</value></data>
+  <data name="Settings_MinimizeToTray" xml:space="preserve"><value>最小化時、タスクトレイに収納する</value></data>
+  <data name="Settings_ShowCompactOnStartup" xml:space="preserve"><value>起動時にミニ電源操作を表示する</value></data>
+  <data name="Settings_StartWithWindows" xml:space="preserve"><value>Windows起動時に実行させる</value></data>
+  <data name="Settings_Hotkeys" xml:space="preserve"><value>プログラマブルキーボード</value></data>
+  <data name="Settings_HotkeysPreparing" xml:space="preserve"><value>グローバルホットキーを準備しています…</value></data>
+  <data name="Settings_HotkeyDefaults" xml:space="preserve"><value>既定: Ctrl+Alt+F13=電源切替、F14=ミュート切替、F15=音量－、F16=音量＋。</value></data>
+  <data name="Settings_HotkeyDetails" xml:space="preserve"><value>詳細設定…</value></data>
+  <data name="Settings_LocalApi" xml:space="preserve"><value>ローカルAPI: http://127.0.0.1:55274/api/v1  ·  OpenAPI: /openapi/v1.json</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>言語</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>言語は次回起動時に反映されます。</value></data>
+  <data name="Language_System" xml:space="preserve"><value>Windowsの言語</value></data>
+  <data name="Settings_StartupUnreadable" xml:space="preserve"><value>Windowsのスタートアップ設定を読み取れませんでした。</value></data>
+  <data name="Settings_NicAuto" xml:space="preserve"><value>自動選択（すべての有効なNIC）</value></data>
+  <data name="Settings_NicDefaultRoute" xml:space="preserve"><value>  （既定経路あり）</value></data>
+  <data name="Settings_PowerToOn" xml:space="preserve"><value>電源をONへ変更中</value></data>
+  <data name="Settings_PowerToStandby" xml:space="preserve"><value>電源をスタンバイへ変更中</value></data>
+  <data name="Settings_ApplyingConnection" xml:space="preserve"><value>接続設定を反映中…</value></data>
+  <data name="Settings_MinimizeYes" xml:space="preserve"><value>最小化するとタスクトレイへ収納します。</value></data>
+  <data name="Settings_MinimizeNo" xml:space="preserve"><value>最小化してもタスクバーにアイコンを残します。</value></data>
+  <data name="Settings_CompactStartupYes" xml:space="preserve"><value>次回からNAVAの起動時にミニ電源操作を表示します。</value></data>
+  <data name="Settings_CompactStartupNo" xml:space="preserve"><value>起動時はミニ電源操作を表示しません。</value></data>
+  <data name="Settings_StartupRegistering" xml:space="preserve"><value>Windows起動時の実行を登録しています…</value></data>
+  <data name="Settings_StartupUnregistering" xml:space="preserve"><value>Windows起動時の実行を解除しています…</value></data>
+  <data name="Settings_StartupConfirmFailed" xml:space="preserve"><value>スタートアップ設定を確認できませんでした。</value></data>
+  <data name="Settings_StartupChangeFailed" xml:space="preserve"><value>Windows起動時の実行設定を変更できませんでした。</value></data>
+  <data name="Settings_StartupYes" xml:space="preserve"><value>Windowsへのサインイン時にNAVAを自動起動します。</value></data>
+  <data name="Settings_StartupNo" xml:space="preserve"><value>Windowsへのサインイン時には自動起動しません。</value></data>
+  <data name="Settings_Connected" xml:space="preserve"><value>接続中</value></data>
+  <data name="Settings_Connecting" xml:space="preserve"><value>接続しています…</value></data>
+  <data name="Settings_Reconnecting" xml:space="preserve"><value>再接続しています…</value></data>
+  <data name="Settings_Unsupported" xml:space="preserve"><value>対象外の機器</value></data>
+  <data name="Settings_PingConfirmPending" xml:space="preserve"><value>ping探索の確認待ち</value></data>
+  <data name="Settings_SubnetTooWide" xml:space="preserve"><value>サブネットが広すぎます</value></data>
+  <data name="Status_Disconnected" xml:space="preserve"><value>未接続</value></data>
+  <data name="Settings_PingNeedsConfirm" xml:space="preserve"><value>広いサブネットのping探索には確認が必要です</value></data>
+  <data name="Settings_SubnetManual" xml:space="preserve"><value>サブネットが/16未満です。接続先を手動指定してください</value></data>
+  <data name="Settings_NotFoundSsdp" xml:space="preserve"><value>SSDPおよびping探索で見つかりません</value></data>
+  <data name="Settings_RangeStep" xml:space="preserve"><value>{0} ～ {1} / {2}刻み</value></data>
+  <data name="Settings_CapabilityAfterConnect" xml:space="preserve"><value>接続後、機器の公式APIから取得した対応機能だけを表示します。</value></data>
+  <data name="Settings_RxV4aVerified" xml:space="preserve"><value>RX-V4A実機確認対象。未対応の機能は表示しません。</value></data>
+  <data name="Settings_UnverifiedModel" xml:space="preserve"><value>公式APIとの互換動作です。この機種での実機確認は行っていません。</value></data>
+  <data name="Settings_RangeUnavailable" xml:space="preserve"><value>機器から値域を取得できません</value></data>
+  <data name="Settings_ChangingInput" xml:space="preserve"><value>ソースを {0} へ変更中</value></data>
+  <data name="Settings_ChangingVolume" xml:space="preserve"><value>音量を {0} へ変更中</value></data>
+  <data name="Settings_ChangingSound" xml:space="preserve"><value>音場を {0} へ変更中</value></data>
+  <data name="Settings_ChangingFlag" xml:space="preserve"><value>{0}を{1}へ変更中</value></data>
+  <data name="Settings_ApplyingTone" xml:space="preserve"><value>トーン設定を反映中</value></data>
+  <data name="Settings_ApplyingEq" xml:space="preserve"><value>EQ設定を反映中</value></data>
+  <data name="Settings_BalanceRequired" xml:space="preserve"><value>バランス値を入力してください。</value></data>
+  <data name="Settings_ChangingBalance" xml:space="preserve"><value>バランスを {0} へ変更中</value></data>
+  <data name="Settings_NumberRequired" xml:space="preserve"><value>数値を入力してください。</value></data>
+  <data name="Settings_PingPrompt" xml:space="preserve"><value>SSDPとプレフィックス/24以上の自動ping探索では対応アンプを検出できませんでした。&#10;&#10;プレフィックス /{0} を含む広いサブネットへ、最大 {1:N0} ホストのping探索を実行しますか？&#10;&#10;応答ホストには読み取り専用のgetDeviceInfoを送信します。アンプ設定は変更しません。</value></data>
+  <data name="Settings_PingPromptTitle" xml:space="preserve"><value>広いサブネットのping探索</value></data>
+  <data name="Settings_HotkeysOk" xml:space="preserve"><value>グローバルホットキー: {0}件を登録済み (MOD_NOREPEAT)</value></data>
+  <data name="Settings_HotkeysConflict" xml:space="preserve"><value>グローバルホットキー: {0}件登録、競合 {1}件 ({2})</value></data>
+  <data name="Settings_BlockMismatch" xml:space="preserve"><value>電源ON禁止中 ({0}) ですが、アンプはONです。自動OFFは行いません。</value></data>
+  <data name="Settings_BlockActive" xml:space="preserve"><value>電源ON禁止中: {0}</value></data>
+  <data name="Settings_ConfirmingDevice" xml:space="preserve"><value>実機確認中</value></data>
+  <data name="Settings_ActiveContexts" xml:space="preserve"><value>&#10;有効なコンテキスト: {0}</value></data>
+  <data name="Error_NotConnected" xml:space="preserve"><value>対応アンプに接続されていません。</value></data>
+  <data name="Error_UnsupportedHere" xml:space="preserve"><value>この機器では利用できない操作です。</value></data>
+  <data name="Error_CapabilityMissingOnDevice" xml:space="preserve"><value>実機のCapabilityにこの操作がありません。</value></data>
+  <data name="Error_ConfirmTimeoutRevert" xml:space="preserve"><value>実機の状態確認がタイムアウトしました。現在の状態に表示を戻します。</value></data>
+  <data name="Error_OperationTimeout" xml:space="preserve"><value>操作がタイムアウトしました。</value></data>
+  <data name="Error_GenericWithLog" xml:space="preserve"><value>操作を完了できませんでした。ログを確認してください。</value></data>
+  <data name="Error_CheckInput" xml:space="preserve"><value>入力内容を確認してください。</value></data>
+  <data name="Error_CapabilityMissing" xml:space="preserve"><value>Capabilityを取得できていません。</value></data>
+  <data name="Error_OperationFailed" xml:space="preserve"><value>操作を完了できませんでした。</value></data>
+  <data name="Startup_ExeUnknown" xml:space="preserve"><value>NAVAの実行ファイルを特定できませんでした。</value></data>
+  <data name="Startup_KeyUnopenable" xml:space="preserve"><value>Windowsのスタートアップ設定を開けませんでした。</value></data>
+  <data name="Tray_Compact" xml:space="preserve"><value>ミニ電源操作</value></data>
+  <data name="Tray_OpenMain" xml:space="preserve"><value>操作画面を開く</value></data>
+  <data name="Tray_OpenSettings" xml:space="preserve"><value>設定画面を開く</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>終了</value></data>
+  <data name="Tray_Icon" xml:space="preserve"><value>NAVA - {0}</value></data>
+  <data name="Tray_Connecting" xml:space="preserve"><value>接続中</value></data>
+  <data name="Tray_Status" xml:space="preserve"><value>状態: {0}</value></data>
+  <data name="Tray_StatusBlocked" xml:space="preserve"><value>状態: {0} / ブロック: {1}</value></data>
+  <data name="Tray_ExternalOn" xml:space="preserve"><value>禁止中・外部ON</value></data>
+  <data name="Tray_PowerBlocked" xml:space="preserve"><value>電源ON禁止中</value></data>
+  <data name="Op_PowerBlocked" xml:space="preserve"><value>電源ONは禁止コンテキストによりブロックされました。</value></data>
+  <data name="Op_AlreadyPower" xml:space="preserve"><value>すでに目的の電源状態です。</value></data>
+  <data name="Op_PowerDone" xml:space="preserve"><value>電源操作を完了しました。</value></data>
+  <data name="Op_ContextAlreadyActive" xml:space="preserve"><value>コンテキストはすでに有効です。アンプ状態は変更しません。</value></data>
+  <data name="Op_ContextActivated" xml:space="preserve"><value>コンテキストを有効化しました。</value></data>
+  <data name="Op_ContextActivatedPartial" xml:space="preserve"><value>コンテキストを有効化しましたが、一部の登録済みアクションを実行できませんでした。</value></data>
+  <data name="Op_ContextActivatedStandby" xml:space="preserve"><value>コンテキストを有効化し、アンプをStandbyにしました。</value></data>
+  <data name="Op_ContextActivatedStandbyPartial" xml:space="preserve"><value>アンプをStandbyにしましたが、一部の登録済みアクションを実行できませんでした。</value></data>
+  <data name="Op_ContextStandbyFailed" xml:space="preserve"><value>コンテキストは有効ですが、アンプをStandbyにできませんでした。</value></data>
+  <data name="Op_ContextAlreadyInactive" xml:space="preserve"><value>コンテキストはすでに解除されています。</value></data>
+  <data name="Op_ContextDeactivated" xml:space="preserve"><value>コンテキストを解除しました。アンプは自動的にONにしません。</value></data>
+  <data name="Op_ContextDeactivatedPartial" xml:space="preserve"><value>コンテキストを解除しましたが、一部の登録済みアクションを実行できませんでした。アンプは自動的にONにしません。</value></data>
+  <data name="Op_ActivityBlocked" xml:space="preserve"><value>アクティビティは電源ON禁止コンテキストによりブロックされました。</value></data>
+  <data name="Op_ActivityConfig" xml:space="preserve"><value>入力またはSCENEを1つだけ設定してください。</value></data>
+  <data name="Op_ActivityDone" xml:space="preserve"><value>アクティビティを目的状態へ収束させました。</value></data>
+  <data name="Op_ActivityPartial" xml:space="preserve"><value>アンプ操作は完了しましたが、一部の登録済みアクションを実行できませんでした。</value></data>
+  <data name="Op_ActivityFailed" xml:space="preserve"><value>アクティビティを完了できませんでした。</value></data>
+  <data name="Op_ActivityDeactivated" xml:space="preserve"><value>アクティビティを解除しました。アンプは自動的にStandbyへ変更しません。</value></data>
+  <data name="Op_ActivityDeactivatedPartial" xml:space="preserve"><value>アクティビティを解除しましたが、一部の登録済みアクションを実行できませんでした。アンプは変更しません。</value></data>
+  <data name="Api_MainZoneUnavailable" xml:space="preserve"><value>Main Zone状態を取得できません。</value></data>
+  <data name="Api_InvalidPower" xml:space="preserve"><value>powerは'on'または'standby'で指定してください。</value></data>
+  <data name="Api_ForceNotAuthorized" xml:space="preserve"><value>APIからの強制ONには、今後追加する専用操作権限が必要です。</value></data>
+  <data name="Api_ActivityNotFound" xml:space="preserve"><value>登録されていないアクティビティです。</value></data>
+  <data name="Api_ContextNotFound" xml:space="preserve"><value>登録されていないコンテキストです。</value></data>
+  <data name="Api_ActionNotFound" xml:space="preserve"><value>登録されていないアクションIDです。</value></data>
+  <data name="Api_Timeout" xml:space="preserve"><value>アンプ操作がタイムアウトしました。</value></data>
+  <data name="Api_DeviceError" xml:space="preserve"><value>アンプが操作を完了できませんでした。</value></data>
+  <data name="Api_Unreachable" xml:space="preserve"><value>アンプと通信できません。</value></data>
+  <data name="Api_LoopbackOnly" xml:space="preserve"><value>MVPのローカルAPIはループバックアドレスだけにバインドできます。</value></data>
+  <data name="Api_PortOutOfRange" xml:space="preserve"><value>ローカルAPIのポート番号が範囲外です。</value></data>
+  <data name="Action_Succeeded" xml:space="preserve"><value>登録済みアクションを実行しました。</value></data>
+  <data name="Action_Failed" xml:space="preserve"><value>登録済みアクションを実行できませんでした。</value></data>
+</root>

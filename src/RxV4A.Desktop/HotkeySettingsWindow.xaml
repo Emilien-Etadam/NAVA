@@ -1,33 +1,34 @@
 <Window x:Class="RxV4A.Desktop.HotkeySettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="NAVA — ホットキー設定" Height="620" Width="940"
+        xmlns:loc="clr-namespace:RxV4A.Host.Localization;assembly=RxV4A.Host"
+        Title="{x:Static loc:Strings.Hotkey_Title}" Height="620" Width="940"
         Icon="Assets/NAVA.ico"
         MinHeight="520" MinWidth="820" WindowStartupLocation="CenterOwner"
         PreviewKeyDown="Window_PreviewKeyDown" Closing="Window_Closing">
     <DockPanel Margin="16">
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
-            <Button Content="保存" Width="100" Height="32" Margin="0,0,8,0" Click="SaveButton_Click" />
-            <Button Content="閉じる" Width="100" Height="32" Click="CloseButton_Click" />
+            <Button Content="{x:Static loc:Strings.Hotkey_Save}" Width="120" Height="32" Margin="0,0,8,0" Click="SaveButton_Click" />
+            <Button Content="{x:Static loc:Strings.Hotkey_Close}" Width="100" Height="32" Click="CloseButton_Click" />
         </StackPanel>
         <DockPanel>
             <StackPanel DockPanel.Dock="Top">
-                <TextBlock Text="キーとアクションをリストから選択します。Ctrl / Alt / Shiftは任意で組み合わせられます。"
+                <TextBlock Text="{x:Static loc:Strings.Hotkey_HelpKeys}"
                            TextWrapping="Wrap" />
-                <TextBlock Text="音量アップ／ダウンを選んだ行では、1回押したときの増減量を指定してください。"
+                <TextBlock Text="{x:Static loc:Strings.Hotkey_HelpAmount}"
                            Foreground="Gray" Margin="0,4,0,8" TextWrapping="Wrap" />
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                    <Button Content="＋ 追加" Padding="12,5" Margin="0,0,6,0" Click="AddHotkeyButton_Click" />
-                    <Button Content="－ 選択行を削除" Padding="12,5" Margin="0,0,6,0" Click="RemoveHotkeyButton_Click" />
-                    <Button Content="既定に戻す" Padding="12,5" Margin="0,0,12,0" Click="ResetHotkeysButton_Click" />
-                    <Button Content="押したキーを選択行へ設定" Padding="12,5" Click="CaptureGlobalButton_Click" />
+                <WrapPanel Margin="0,0,0,8">
+                    <Button Content="{x:Static loc:Strings.Hotkey_Add}" Padding="12,5" Margin="0,0,6,0" Click="AddHotkeyButton_Click" />
+                    <Button Content="{x:Static loc:Strings.Hotkey_Remove}" Padding="12,5" Margin="0,0,6,0" Click="RemoveHotkeyButton_Click" />
+                    <Button Content="{x:Static loc:Strings.Hotkey_Reset}" Padding="12,5" Margin="0,0,12,0" Click="ResetHotkeysButton_Click" />
+                    <Button Content="{x:Static loc:Strings.Hotkey_Capture}" Padding="12,5" Click="CaptureGlobalButton_Click" />
                     <TextBlock x:Name="CaptureStatusText" Margin="12,6,0,0" Foreground="DarkOrange" />
-                </StackPanel>
+                </WrapPanel>
             </StackPanel>
             <DataGrid x:Name="GlobalHotkeysGrid" AutoGenerateColumns="False" CanUserAddRows="False"
                       SelectionMode="Single" ItemsSource="{Binding GlobalHotkeys}">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="キー" Width="165">
+                    <DataGridTemplateColumn Header="{x:Static loc:Strings.Hotkey_ColKey}" Width="165">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ComboBox ItemsSource="{Binding DataContext.KeyOptions, RelativeSource={RelativeSource AncestorType=Window}}"
@@ -40,7 +41,7 @@
                     <DataGridCheckBoxColumn Header="Ctrl" Binding="{Binding Ctrl}" Width="60" />
                     <DataGridCheckBoxColumn Header="Alt" Binding="{Binding Alt}" Width="60" />
                     <DataGridCheckBoxColumn Header="Shift" Binding="{Binding Shift}" Width="60" />
-                    <DataGridTemplateColumn Header="アクション" Width="*">
+                    <DataGridTemplateColumn Header="{x:Static loc:Strings.Hotkey_ColAction}" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <ComboBox ItemsSource="{Binding DataContext.ActionOptions, RelativeSource={RelativeSource AncestorType=Window}}"
@@ -50,12 +51,12 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="増減量" Width="100">
+                    <DataGridTemplateColumn Header="{x:Static loc:Strings.Hotkey_ColAmount}" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBox Text="{Binding AmountText, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                          IsEnabled="{Binding RequiresAmount}" HorizontalContentAlignment="Right"
-                                         ToolTip="音量アップ／ダウン時の1回あたりの増減量" />
+                                         ToolTip="{x:Static loc:Strings.Hotkey_AmountTooltip}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

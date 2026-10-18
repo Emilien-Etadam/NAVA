@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using RxV4A.Host.Localization;
 
 namespace RxV4A.Host;
 
@@ -80,7 +81,7 @@ public sealed class RegisteredActionService : IRegisteredActionService
         {
             await action.ExecuteAsync(cancellationToken).ConfigureAwait(false);
             _logger.LogInformation("A registered action executed successfully.");
-            return new RegisteredActionResult(action.Id, true, "success", "登録済みアクションを実行しました。");
+            return new RegisteredActionResult(action.Id, true, "success", Strings.Action_Succeeded);
         }
         catch (OperationCanceledException)
         {
@@ -95,7 +96,7 @@ public sealed class RegisteredActionService : IRegisteredActionService
         {
             _logger.LogError(exception, "A registered action failed.");
             return new RegisteredActionResult(action.Id, false, "registered_action_failed",
-                "登録済みアクションを実行できませんでした。");
+                Strings.Action_Failed);
         }
     }
 
@@ -125,7 +126,7 @@ public sealed class RegisteredActionService : IRegisteredActionService
             catch (ArgumentOutOfRangeException)
             {
                 results.Add(new RegisteredActionResult(actionId, false, "registered_action_not_found",
-                    "登録されていないアクションIDです。"));
+                    Strings.Api_ActionNotFound));
             }
         }
 
