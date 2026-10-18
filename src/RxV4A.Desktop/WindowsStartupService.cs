@@ -1,4 +1,5 @@
 using Microsoft.Win32;
+using RxV4A.Host.Localization;
 
 namespace RxV4A.Desktop;
 
@@ -13,7 +14,7 @@ internal sealed class WindowsStartupService
         var executablePath = Environment.ProcessPath;
         if (string.IsNullOrWhiteSpace(executablePath))
         {
-            throw new InvalidOperationException("NAVAの実行ファイルを特定できませんでした。");
+            throw new InvalidOperationException(Strings.Startup_ExeUnknown);
         }
 
         _startupCommand = $"\"{executablePath}\"";
@@ -31,7 +32,7 @@ internal sealed class WindowsStartupService
         if (enabled)
         {
             using var key = Registry.CurrentUser.CreateSubKey(RunKeyPath, writable: true)
-                ?? throw new InvalidOperationException("Windowsのスタートアップ設定を開けませんでした。");
+                ?? throw new InvalidOperationException(Strings.Startup_KeyUnopenable);
             key.SetValue(ValueName, _startupCommand, RegistryValueKind.String);
             return;
         }

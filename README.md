@@ -1,95 +1,97 @@
 # NAVA
 
-Network AV Amp Controller
+Contrôleur d'amplificateur audio-vidéo réseau
 
-YAMAHAの「[AV CONTROLLER](https://jp.yamaha.com/products/audio_visual/apps/av_controller/index.html)」アプリのバージョンアップが終了し、利用していたAlexaスキルも使えなくなったため、パソコンから対応アンプを操作できるアプリとしてNAVAを作りました。
+> **English.** This repository is a French-localized fork of [NAVA by anko (azuki2anko)](https://github.com/azuki2anko/NAVA), published under the MIT license. The Windows app follows the display language: French, English or Japanese, and anything else falls back to French. The choice can also be saved in Settings and is applied on the next launch. A self-contained portable build is uploaded on every push and pull request. Pushing a tag such as `v0.1.0-fr.1` creates a GitHub Release with the zip attached. The full guide below is in French.
 
-**[Windows 11 x64用インストーラーをダウンロード](https://github.com/azuki2anko/NAVA/releases/download/v0.1.0/NAVA-0.1.0-win-x64-setup.exe)**
+NAVA pilote un amplificateur ou une enceinte Yamaha MusicCast compatible avec l'API Yamaha Extended Control, depuis Windows 11. Cette version est un **fork traduit en français** du projet original d'[anko (azuki2anko)](https://github.com/azuki2anko/NAVA). Le comportement est celui de l'amont : seules les chaînes visibles, l'installateur et ce guide ont été traduits.
 
-インストールせずに使う場合は、[Portable版ZIP](https://github.com/azuki2anko/NAVA/releases/download/v0.1.0/NAVA-0.1.0-win-x64-portable.zip)を利用できます。
+L'application choisit la langue au démarrage :
 
-**[利用説明書を読む](doc/USER_GUIDE.md)**
+- français si Windows est en français, ou si la langue n'est ni l'anglais ni le japonais ;
+- anglais si Windows est en anglais ;
+- japonais si Windows est en japonais.
 
-### 「一般的にダウンロードされていません」と表示された場合
+Le choix peut être modifié dans **Réglages**, section Comportement. Il est enregistré et pris en compte au prochain démarrage.
 
-NAVA 0.1.0はコード署名されていないため、初回のダウンロードや実行時にMicrosoft Defender SmartScreenの評判警告が表示される場合があります。警告が出たら、最初に次の2点を確認してください。
+**[Télécharger la version portable Windows 11 x64](https://github.com/Emilien-Etadam/NAVA/releases/latest)** une fois la release `v0.1.0-fr.1` publiée. Le fichier s'appelle `NAVA-0.1.0-fr.1-win-x64-portable.zip`. L'installateur Inno Setup, en français et en anglais, se construit localement avec `build/Build-Distributions.ps1` (Inno Setup 6). Il n'est pas joint automatiquement à la release GitHub : la release contient le zip portable et `SHA256SUMS.txt`.
 
-1. ダウンロード元がこのリポジトリの[正式なRelease](https://github.com/azuki2anko/NAVA/releases/tag/v0.1.0)であること。
-2. ダウンロードしたファイルのSHA-256が[`SHA256SUMS.txt`](https://github.com/azuki2anko/NAVA/releases/download/v0.1.0/SHA256SUMS.txt)と一致すること。
+La version portable d'origine, en japonais, reste disponible chez l'auteur : [NAVA 0.1.0](https://github.com/azuki2anko/NAVA/releases/tag/v0.1.0).
 
-SHA-256はPowerShellで確認できます。
+Le guide détaillé `doc/USER_GUIDE.md` et les autres documents de `doc/` sont encore ceux de l'amont, en japonais.
+
+### Si Windows affiche « non téléchargé fréquemment » ou « PC protégé »
+
+NAVA n'est pas signé. SmartScreen peut donc avertir au premier téléchargement. Avant d'exécuter le fichier :
+
+1. Vérifiez qu'il provient de la [release de ce dépôt](https://github.com/Emilien-Etadam/NAVA/releases/latest).
+2. Comparez son SHA-256 avec `SHA256SUMS.txt` publié à côté du zip.
 
 ```powershell
-Get-FileHash .\NAVA-0.1.0-win-x64-setup.exe -Algorithm SHA256
-Get-FileHash .\NAVA-0.1.0-win-x64-portable.zip -Algorithm SHA256
+Get-FileHash .\NAVA-0.1.0-fr.1-win-x64-portable.zip -Algorithm SHA256
 ```
 
-確認後もMicrosoft Edgeに「一般的にダウンロードされていません」と表示される場合は、ダウンロード一覧で対象ファイルの「…」→「保持」→「詳細表示」→「保持」を選びます。表示名はEdgeのバージョンによって多少異なる場合があります。
+Si l'avertissement parle d'un logiciel malveillant identifié, n'exécutez pas le fichier. Il n'est pas nécessaire de désactiver SmartScreen.
 
-Portable版を展開して`NAVA.exe`を開いたときに「WindowsによってPCが保護されました」または信用できるソフトウェアか確認する画面が出た場合は、「詳細情報」でアプリ名が`NAVA.exe`であることを確認し、上記の配布元とSHA-256を確認済みの場合だけ「実行」を選択してください。「不明な発行元」と表示されるのは、現在の配布物が未署名のためです。
-
-警告が「不明」「一般的にダウンロードされていない」ではなく、マルウェアや脅威を検出したという内容の場合は実行せず、ダウンロードしたファイルを削除してIssueで報告してください。SmartScreenやウイルス対策機能そのものを無効にする必要はありません。
-
-Windows 11からYamaha Extended Control対応アンプを操作する、Capability駆動のタスクトレイ常駐アプリです。リモコンの完全再現ではなく、PC用アンプとして使うMain Zoneの日常操作へ重点を置いています。
+NAVA reste une application de zone de notification, centrée sur l'usage quotidien de la zone Main. Ce n'est pas une copie complète de la télécommande Yamaha.
 
 > [!IMPORTANT]
-> 実機で動作確認している機種はRX-V4Aだけです。ほかの機種はYamaha Extended Control API Specification (Basic / Advanced) Rev.2.00と`getFeatures`に基づく互換動作であり、動作保証はありません。
+> L'amont n'a vérifié l'application que sur un RX-V4A. Les autres modèles, dont un MusicCast 50, suivent la spécification Yamaha Extended Control (Basic / Advanced) Rev. 2.00 et la réponse `getFeatures`. Ce fonctionnement compatible n'est pas une garantie.
 
-本プロジェクトは非公式のコミュニティプロジェクトであり、ヤマハ株式会社による提供、承認、保証はありません。
+Projet communautaire non officiel. Yamaha Corporation ne le fournit pas, ne l'approuve pas et ne le garantit pas.
 
-## 主な機能
+## Fonctions
 
-- 電源ON／Standby、映像・音声入力、音量、ミュート
-- 音場プログラム、3D Surround、Direct、Pure Direct、Enhancer
-- トーン、EQ、左右バランス
-- SSDP、Windows近隣キャッシュ、確認付きping探索、手動接続
-- シンプルなWPF画面、タスクトレイ、最前面ミニ電源トグル
-- タスクトレイ収納とWindowsサインイン時の自動起動設定
-- 選択式のグローバルホットキー
-- `127.0.0.1`限定の型付きREST APIとOpenAPI
-- 汎用アクティビティ、Power-on blocker、登録済みアクション拡張契約
-- JSON設定、構造化ログ、タイムアウト、ポーリング、自動再接続
+- Alimentation, veille, source, volume et sourdine
+- Champ sonore, 3D Surround, Direct, Pure Direct, Enhancer
+- Tonalité, égaliseur et balance
+- Découverte SSDP, cache de voisinage Windows, ping avec confirmation, connexion manuelle
+- Fenêtre WPF, zone de notification et mini-commande d'alimentation toujours visible
+- Réduction dans la zone de notification et lancement à l'ouverture de session
+- Raccourcis clavier globaux
+- API REST typée limitée à `127.0.0.1`, avec OpenAPI
+- Activités, blocage d'allumage et actions enregistrées
+- Réglages JSON, journaux structurés, délais, interrogation et reconnexion
+- Français, anglais et japonais
 
-機能、入力、音場、値域は`getFeatures`から取得します。機器が対応機能として公開しない操作は画面へ表示せず、API要求も拒否します。Tuner／ラジオ機能は現在保留中です。
+Les fonctions, sources, champs sonores et plages viennent de `getFeatures`. Une commande que l'appareil n'annonce pas n'est ni affichée ni acceptée par l'API. Le tuner reste en attente, comme dans l'amont.
 
-## 必要な環境
+## Environnement
 
 - Windows 11 x64
-- PCとアンプが同じLANに接続されていること
-- ネットワーク制御に対応したYamahaアンプ
+- Le PC et l'amplificateur sur le même réseau local
+- Un amplificateur Yamaha pilotable par le réseau
 
-通常利用で外部インターネット通信やテレメトリは必要ありません。
+Aucun accès Internet ni télémétrie n'est requis pour l'usage normal.
 
-## 使い始める
+## Démarrer
 
-Portable版のZIPを展開して`NAVA.exe`を起動するか、インストーラー版のセットアップを実行します。アプリはタスクトレイへ常駐し、読み取り専用の機器探索を開始します。詳しい導入、初回接続、画面操作、ミニ画面、ホットキー、トラブル対処は[利用説明書](doc/USER_GUIDE.md)を参照してください。
+Décompressez le zip portable et lancez `NAVA.exe`. L'application se place dans la zone de notification et commence une recherche en lecture seule. Le premier écran sert aux commandes quotidiennes. **Réglages** contient l'adresse, la carte réseau, la langue et les raccourcis.
 
-ソースから起動する場合:
+Depuis les sources :
 
 ```powershell
 dotnet restore NetworkAVAmp.Controller.sln
 dotnet run --project src/RxV4A.Desktop/RxV4A.Desktop.csproj -c Debug
 ```
 
-## localhost API
+## API locale
 
-- API: `http://127.0.0.1:55274/api/v1`
-- OpenAPI: `http://127.0.0.1:55274/openapi/v1.json`
+- API : `http://127.0.0.1:55274/api/v1`
+- OpenAPI : `http://127.0.0.1:55274/openapi/v1.json`
 
-APIは状態と目的を限定した型付き操作だけを提供します。任意のYamaha APIを転送するプロキシではありません。要求例は[localhost APIガイド](doc/API_GUIDE.md)を参照してください。
+L'API n'accepte que des opérations typées. Ce n'est pas un proxy vers n'importe quelle commande Yamaha. Les messages suivent la langue choisie pour l'application. Les codes d'erreur restent stables. Le guide d'exemples est encore en japonais : [doc/API_GUIDE.md](doc/API_GUIDE.md).
 
-## 文書
+## Documents
 
-- [利用説明書](doc/USER_GUIDE.md)
-- [localhost APIガイド](doc/API_GUIDE.md)
-- [公開版要件定義](doc/public/01_REQUIREMENTS_PUBLIC.md)
-- [実装ガイド](doc/03_IMPLEMENTATION_GUIDE.md)
-- [GitHub公開・リリースチェックリスト](doc/RELEASE_CHECKLIST.md)
-- [変更履歴](CHANGELOG.md)
-- [コントリビューションガイド](CONTRIBUTING.md)
-- [セキュリティポリシー](SECURITY.md)
+- [Guide d'utilisation amont, en japonais](doc/USER_GUIDE.md)
+- [Guide de l'API locale, en japonais](doc/API_GUIDE.md)
+- [Historique](CHANGELOG.md)
+- [Contribution, en japonais](CONTRIBUTING.md)
+- [Politique de sécurité, en japonais](SECURITY.md)
+- Projet original : [azuki2anko/NAVA](https://github.com/azuki2anko/NAVA)
 
-## ビルドと検証
+## Build et publication
 
 ```powershell
 dotnet restore NetworkAVAmp.Controller.sln
@@ -99,22 +101,22 @@ dotnet format NetworkAVAmp.Controller.sln --verify-no-changes --no-restore
 dotnet publish src/RxV4A.Desktop/RxV4A.Desktop.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o artifacts/publish
 ```
 
-Portable ZIPとインストーラーをまとめて作成する場合は、Inno Setup 6を用意して次を実行します。
+Le zip portable officiel, avec la documentation et les satellites de langue (`en` et `ja` à côté de `NAVA.exe`), se construit ainsi. L'installateur demande Inno Setup 6 ; `-SkipInstaller` produit seulement le zip.
 
 ```powershell
-.\build\Build-Distributions.ps1
+.\build\Build-Distributions.ps1 -SkipInstaller
 ```
 
-GitHub Actionsでも同じRelease build、test、format、self-contained publishを検証します。
+GitHub Actions, sur `windows-latest`, vérifie le build, les tests et le format, puis publie le zip en artefact à chaque push et chaque pull request. Un tag `v*` crée en plus une GitHub Release avec ce zip.
 
-## プライバシーと安全性
+## Vie privée
 
-実行時設定とログは`%LocalAppData%\NAVA`へ保存します。設定ファイルや無加工ログをIssueへ添付しないでください。IPアドレス、MACアドレス、機器ID、トークン、鍵、個人パスを公開しないでください。
+Les réglages et les journaux sont dans `%LocalAppData%\NAVA`. N'ajoutez pas le fichier de réglages ni un journal brut à un ticket. N'y mettez pas d'adresse IP, d'adresse MAC, d'identifiant d'appareil, de jeton, de clé ou de chemin personnel.
 
-公開版は外部入力から任意URL、任意コマンド、任意キー列、任意Yamaha APIを実行しません。実機の最初の確認は読み取り専用から始めてください。詳細は[セキュリティポリシー](SECURITY.md)を参照してください。
+La version publique n'exécute pas d'URL, de commande, de séquence de touches ou d'appel Yamaha arbitraire fourni de l'extérieur. Commencez la vérification sur un appareil réel par des lectures seules. Voir [SECURITY.md](SECURITY.md).
 
-## ライセンス
+## Crédit et licence
 
-Copyright (c) 2026 anko
+Œuvre originale : **anko** ([azuki2anko/NAVA](https://github.com/azuki2anko/NAVA)), Copyright (c) 2026 anko.
 
-[MIT License](LICENSE)
+Ce dépôt en est un fork traduit. La licence MIT d'origine est conservée : [LICENSE](LICENSE).

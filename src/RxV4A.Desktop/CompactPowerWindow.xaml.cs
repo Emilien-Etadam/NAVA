@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Interop;
 using RxV4A.Core;
 using RxV4A.Host;
+using RxV4A.Host.Localization;
 using MediaBrushes = System.Windows.Media.Brushes;
 
 namespace RxV4A.Desktop;
@@ -152,7 +153,7 @@ public partial class CompactPowerWindow : Window
         }
         else if (snapshot.ConnectionState != DeviceConnectionState.Connected)
         {
-            StateText.Text = "未接続";
+            StateText.Text = Strings.Status_Disconnected;
             StateIndicator.Fill = MediaBrushes.Gray;
             PowerToggleButton.Tag = "Off";
         }
@@ -174,9 +175,9 @@ public partial class CompactPowerWindow : Window
             blockers.Count > 0 &&
             !string.Equals(snapshot.MainZone?.Power, "on", StringComparison.OrdinalIgnoreCase))
         {
-            StateText.Text = "ON禁止中";
+            StateText.Text = Strings.Compact_PowerBlocked;
             StateIndicator.Fill = MediaBrushes.DarkOrange;
-            ToolTip = $"有効なブロッカー: {string.Join(", ", blockers)}";
+            ToolTip = Strings.Format(Strings.Compact_ActiveBlockers, string.Join(", ", blockers));
         }
 
         UpdateButtons();
@@ -194,7 +195,7 @@ public partial class CompactPowerWindow : Window
         PowerToggleButton.Tag = powerOn ? "On" : "Off";
         StateText.Text = powerOn ? "ON" : "OFF";
         StateIndicator.Fill = powerOn ? MediaBrushes.LimeGreen : MediaBrushes.SlateGray;
-        ToolTip = confirming ? "実機の電源状態を確認しています。" : null;
+        ToolTip = confirming ? Strings.Compact_ConfirmingPower : null;
     }
 
     private async Task<DeviceSnapshot> ConfirmDeviceStateAsync(Func<DeviceSnapshot, bool> targetReached)
@@ -258,8 +259,8 @@ public partial class CompactPowerWindow : Window
         _pendingPowerState = null;
         UpdateState(_deviceManager.Snapshot);
         ToolTip = exception is TimeoutException
-            ? "実機の状態確認がタイムアウトしました。取得できた状態へ表示を戻しました。"
-            : "操作を完了できませんでした。取得できた実機状態へ表示を戻しました。";
+            ? Strings.Compact_ConfirmTimeout
+            : Strings.Compact_OperationFailed;
     }
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)

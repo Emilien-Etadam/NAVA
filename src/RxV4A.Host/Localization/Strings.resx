@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="App_StartupFailed" xml:space="preserve"><value>Impossible de démarrer NAVA.&#10;&#10;{0}</value></data>
+  <data name="Compact_Title" xml:space="preserve"><value>NAVA — Alimentation</value></data>
+  <data name="Compact_DragTooltip" xml:space="preserve"><value>Glisser pour déplacer</value></data>
+  <data name="Compact_Connecting" xml:space="preserve"><value>Connexion…</value></data>
+  <data name="Compact_PowerBlocked" xml:space="preserve"><value>ON bloqué</value></data>
+  <data name="Compact_ActiveBlockers" xml:space="preserve"><value>Blocages actifs : {0}</value></data>
+  <data name="Compact_ConfirmingPower" xml:space="preserve"><value>Vérification de l'alimentation de l'appareil.</value></data>
+  <data name="Compact_ConfirmTimeout" xml:space="preserve"><value>La vérification de l'appareil a expiré. L'affichage est revenu au dernier état obtenu.</value></data>
+  <data name="Compact_OperationFailed" xml:space="preserve"><value>Impossible de terminer l'opération. L'affichage est revenu au dernier état obtenu.</value></data>
+  <data name="Main_Refresh" xml:space="preserve"><value>↻  Actualiser</value></data>
+  <data name="Main_Settings" xml:space="preserve"><value>⚙  Réglages</value></data>
+  <data name="Main_Minimize" xml:space="preserve"><value>Réduire</value></data>
+  <data name="Main_Close" xml:space="preserve"><value>Fermer</value></data>
+  <data name="Main_ScrollDrag" xml:space="preserve"><value>Molette ou glisser</value></data>
+  <data name="Main_ConnectionInfo" xml:space="preserve"><value>Connexion</value></data>
+  <data name="Main_Source" xml:space="preserve"><value>Source</value></data>
+  <data name="Main_SoundField" xml:space="preserve"><value>Champ sonore</value></data>
+  <data name="Main_Searching" xml:space="preserve"><value>Recherche de l'amplificateur…</value></data>
+  <data name="Main_CheckingState" xml:space="preserve"><value>Vérification de l'état…</value></data>
+  <data name="Main_Connected" xml:space="preserve"><value>Connecté</value></data>
+  <data name="Main_Connecting" xml:space="preserve"><value>Connexion…</value></data>
+  <data name="Main_Reconnecting" xml:space="preserve"><value>Reconnexion…</value></data>
+  <data name="Main_Unsupported" xml:space="preserve"><value>Appareil non pris en charge</value></data>
+  <data name="Main_FetchingState" xml:space="preserve"><value>Récupération du dernier état sur le réseau</value></data>
+  <data name="Main_Adjusting" xml:space="preserve"><value>Réglage</value></data>
+  <data name="Main_PowerBlocked" xml:space="preserve"><value>Allumage interdit  •  {0}</value></data>
+  <data name="Main_LastUpdate" xml:space="preserve"><value>Dernière mise à jour  {0}</value></data>
+  <data name="Main_ConfirmPingInSettings" xml:space="preserve"><value>Confirmez la recherche réseau dans les réglages</value></data>
+  <data name="Main_SpecifyHostInSettings" xml:space="preserve"><value>Indiquez l'adresse dans les réglages</value></data>
+  <data name="Main_DeviceNotFound" xml:space="preserve"><value>Aucun amplificateur compatible</value></data>
+  <data name="Main_Refreshing" xml:space="preserve"><value>Récupération de l'état…</value></data>
+  <data name="Main_ChangingPower" xml:space="preserve"><value>Alimentation vers {0}  •  vérification de l'appareil</value></data>
+  <data name="Main_ChangingMute" xml:space="preserve"><value>Sourdine vers {0}  •  vérification de l'appareil</value></data>
+  <data name="Main_ChangingVolume" xml:space="preserve"><value>Volume vers {0}  •  vérification de l'appareil</value></data>
+  <data name="Main_ChangingSource" xml:space="preserve"><value>Source vers {0}  •  vérification de l'appareil</value></data>
+  <data name="Main_ChangingSound" xml:space="preserve"><value>Champ sonore vers {0}  •  vérification de l'appareil</value></data>
+  <data name="Hotkey_Title" xml:space="preserve"><value>NAVA — Raccourcis clavier</value></data>
+  <data name="Hotkey_Save" xml:space="preserve"><value>Enregistrer</value></data>
+  <data name="Hotkey_Close" xml:space="preserve"><value>Fermer</value></data>
+  <data name="Hotkey_HelpKeys" xml:space="preserve"><value>Choisissez la touche et l'action dans les listes. Ctrl, Alt et Maj peuvent être combinés librement.</value></data>
+  <data name="Hotkey_HelpAmount" xml:space="preserve"><value>Pour une ligne Volume + ou Volume −, indiquez le pas appliqué à chaque appui.</value></data>
+  <data name="Hotkey_Add" xml:space="preserve"><value>＋ Ajouter</value></data>
+  <data name="Hotkey_Remove" xml:space="preserve"><value>－ Supprimer la sélection</value></data>
+  <data name="Hotkey_Reset" xml:space="preserve"><value>Valeurs par défaut</value></data>
+  <data name="Hotkey_Capture" xml:space="preserve"><value>Affecter la touche pressée</value></data>
+  <data name="Hotkey_ColKey" xml:space="preserve"><value>Touche</value></data>
+  <data name="Hotkey_ColAction" xml:space="preserve"><value>Action</value></data>
+  <data name="Hotkey_ColAmount" xml:space="preserve"><value>Pas</value></data>
+  <data name="Hotkey_AmountTooltip" xml:space="preserve"><value>Pas de volume à chaque appui, pour Volume + et Volume −</value></data>
+  <data name="Hotkey_Added" xml:space="preserve"><value>Ligne ajoutée. Choisissez la touche et l'action.</value></data>
+  <data name="Hotkey_SelectRowToDelete" xml:space="preserve"><value>Sélectionnez la ligne à supprimer.</value></data>
+  <data name="Hotkey_Removed" xml:space="preserve"><value>Ligne supprimée. Enregistrez pour appliquer.</value></data>
+  <data name="Hotkey_ResetDone" xml:space="preserve"><value>Les 4 raccourcis par défaut sont rétablis. Enregistrez pour appliquer.</value></data>
+  <data name="Hotkey_Saved" xml:space="preserve"><value>Réglages enregistrés. Les raccourcis globaux ont été réinscrits.</value></data>
+  <data name="Hotkey_SaveFailed" xml:space="preserve"><value>Impossible d'enregistrer les réglages.&#10;&#10;{0}</value></data>
+  <data name="Hotkey_SelectRowFirst" xml:space="preserve"><value>Sélectionnez d'abord une ligne de raccourci.</value></data>
+  <data name="Hotkey_PressKey" xml:space="preserve"><value>Appuyez sur une lettre, un chiffre, une touche F, une touche de navigation ou une touche média. Échap annule.</value></data>
+  <data name="Hotkey_CaptureCancelled" xml:space="preserve"><value>Saisie de la touche annulée.</value></data>
+  <data name="Hotkey_KeyUnsupported" xml:space="preserve"><value>Cette touche ne peut pas servir de raccourci global.</value></data>
+  <data name="Hotkey_Captured" xml:space="preserve"><value>Touche capturée : {0} (enregistrez pour appliquer)</value></data>
+  <data name="Hotkey_ChooseFromList" xml:space="preserve"><value>Choisissez un raccourci dans la liste prise en charge.</value></data>
+  <data name="Hotkey_AmountInvalid" xml:space="preserve"><value>Le pas de volume doit être un nombre supérieur à 0 et inférieur ou égal à 100.</value></data>
+  <data name="Hotkey_Unassigned" xml:space="preserve"><value>Non assigné</value></data>
+  <data name="Hotkey_PowerToggle" xml:space="preserve"><value>Alimentation : basculer ON / veille</value></data>
+  <data name="Hotkey_PowerOn" xml:space="preserve"><value>Alimentation : ON</value></data>
+  <data name="Hotkey_PowerStandby" xml:space="preserve"><value>Alimentation : veille</value></data>
+  <data name="Hotkey_MuteToggle" xml:space="preserve"><value>Sourdine : basculer</value></data>
+  <data name="Hotkey_MuteOn" xml:space="preserve"><value>Sourdine : ON</value></data>
+  <data name="Hotkey_MuteOff" xml:space="preserve"><value>Sourdine : OFF</value></data>
+  <data name="Hotkey_VolumeUp" xml:space="preserve"><value>Volume : augmenter</value></data>
+  <data name="Hotkey_VolumeDown" xml:space="preserve"><value>Volume : baisser</value></data>
+  <data name="Hotkey_Input" xml:space="preserve"><value>Source : {0}</value></data>
+  <data name="Hotkey_Sound" xml:space="preserve"><value>Champ sonore : {0}</value></data>
+  <data name="Hotkey_Activity" xml:space="preserve"><value>Activité : {0}</value></data>
+  <data name="Hotkey_Blocker" xml:space="preserve"><value>Interdire l'allumage : basculer {0}</value></data>
+  <data name="Hotkey_RegisteredAction" xml:space="preserve"><value>Action enregistrée : {0}</value></data>
+  <data name="Hotkey_SavedAction" xml:space="preserve"><value>Déjà enregistré : {0}</value></data>
+  <data name="Settings_Title" xml:space="preserve"><value>NAVA — Réglages</value></data>
+  <data name="Settings_Heading" xml:space="preserve"><value>Réglages NAVA</value></data>
+  <data name="Settings_Subtitle" xml:space="preserve"><value>Network AV Amp Controller  •  connexion, fonctions avancées et raccourcis</value></data>
+  <data name="Settings_Connection" xml:space="preserve"><value>Connexion</value></data>
+  <data name="Settings_Device" xml:space="preserve"><value>Appareil</value></data>
+  <data name="Settings_Power" xml:space="preserve"><value>Alimentation</value></data>
+  <data name="Settings_InputVolume" xml:space="preserve"><value>Source / volume</value></data>
+  <data name="Settings_LastUpdate" xml:space="preserve"><value>Dernière mise à jour</value></data>
+  <data name="Settings_AmpOn" xml:space="preserve"><value>Ampli ON</value></data>
+  <data name="Settings_Standby" xml:space="preserve"><value>Veille</value></data>
+  <data name="Settings_Refresh" xml:space="preserve"><value>Actualiser l'état</value></data>
+  <data name="Settings_Daily" xml:space="preserve"><value>Commandes courantes</value></data>
+  <data name="Settings_Source" xml:space="preserve"><value>Source</value></data>
+  <data name="Settings_Switch" xml:space="preserve"><value>Changer</value></data>
+  <data name="Settings_Volume" xml:space="preserve"><value>Volume</value></data>
+  <data name="Settings_Apply" xml:space="preserve"><value>Appliquer</value></data>
+  <data name="Settings_Mute" xml:space="preserve"><value>Sourdine</value></data>
+  <data name="Settings_Enabled" xml:space="preserve"><value>Activée</value></data>
+  <data name="Settings_SoundProgram" xml:space="preserve"><value>Programme sonore</value></data>
+  <data name="Settings_Tone" xml:space="preserve"><value>Tonalité</value></data>
+  <data name="Settings_Balance" xml:space="preserve"><value>Balance</value></data>
+  <data name="Settings_BalanceTooltip" xml:space="preserve"><value>Négatif = gauche, positif = droite</value></data>
+  <data name="Settings_BassTooltip" xml:space="preserve"><value>Graves</value></data>
+  <data name="Settings_TrebleTooltip" xml:space="preserve"><value>Aigus</value></data>
+  <data name="Settings_LowTooltip" xml:space="preserve"><value>Graves</value></data>
+  <data name="Settings_MidTooltip" xml:space="preserve"><value>Médiums</value></data>
+  <data name="Settings_HighTooltip" xml:space="preserve"><value>Aigus</value></data>
+  <data name="Settings_CapabilityNote" xml:space="preserve"><value>Seules les fonctions annoncées par l'API officielle de l'appareil connecté sont affichées.</value></data>
+  <data name="Settings_Target" xml:space="preserve"><value>Adresse</value></data>
+  <data name="Settings_TargetHelp" xml:space="preserve"><value>Si le champ est vide, la recherche utilise l'adresse enregistrée, puis SSDP, puis le cache de voisinage Windows. Vous pouvez indiquer seulement une adresse IP ou un nom d'hôte.</value></data>
+  <data name="Settings_Nic" xml:space="preserve"><value>Carte réseau</value></data>
+  <data name="Settings_SaveConnect" xml:space="preserve"><value>Enregistrer et connecter</value></data>
+  <data name="Settings_Behavior" xml:space="preserve"><value>Comportement</value></data>
+  <data name="Settings_MinimizeToTray" xml:space="preserve"><value>Réduire dans la zone de notification</value></data>
+  <data name="Settings_ShowCompactOnStartup" xml:space="preserve"><value>Afficher la mini-commande d'alimentation au démarrage</value></data>
+  <data name="Settings_StartWithWindows" xml:space="preserve"><value>Lancer à l'ouverture de session Windows</value></data>
+  <data name="Settings_Hotkeys" xml:space="preserve"><value>Raccourcis clavier</value></data>
+  <data name="Settings_HotkeysPreparing" xml:space="preserve"><value>Préparation des raccourcis globaux…</value></data>
+  <data name="Settings_HotkeyDefaults" xml:space="preserve"><value>Par défaut : Ctrl+Alt+F13 = alimentation, F14 = sourdine, F15 = volume −, F16 = volume +.</value></data>
+  <data name="Settings_HotkeyDetails" xml:space="preserve"><value>Réglage détaillé…</value></data>
+  <data name="Settings_LocalApi" xml:space="preserve"><value>API locale : http://127.0.0.1:55274/api/v1  ·  OpenAPI : /openapi/v1.json</value></data>
+  <data name="Settings_Language" xml:space="preserve"><value>Langue</value></data>
+  <data name="Settings_LanguageRestart" xml:space="preserve"><value>La langue sera appliquée au prochain démarrage.</value></data>
+  <data name="Language_System" xml:space="preserve"><value>Langue de Windows</value></data>
+  <data name="Settings_StartupUnreadable" xml:space="preserve"><value>Impossible de lire le démarrage automatique de Windows.</value></data>
+  <data name="Settings_NicAuto" xml:space="preserve"><value>Sélection automatique (toutes les cartes actives)</value></data>
+  <data name="Settings_NicDefaultRoute" xml:space="preserve"><value>  (passerelle par défaut)</value></data>
+  <data name="Settings_PowerToOn" xml:space="preserve"><value>Passage en ON</value></data>
+  <data name="Settings_PowerToStandby" xml:space="preserve"><value>Passage en veille</value></data>
+  <data name="Settings_ApplyingConnection" xml:space="preserve"><value>Application des réglages de connexion…</value></data>
+  <data name="Settings_MinimizeYes" xml:space="preserve"><value>La réduction place NAVA dans la zone de notification.</value></data>
+  <data name="Settings_MinimizeNo" xml:space="preserve"><value>La réduction laisse l'icône dans la barre des tâches.</value></data>
+  <data name="Settings_CompactStartupYes" xml:space="preserve"><value>La mini-commande d'alimentation s'affichera au prochain démarrage de NAVA.</value></data>
+  <data name="Settings_CompactStartupNo" xml:space="preserve"><value>La mini-commande d'alimentation ne s'affiche pas au démarrage.</value></data>
+  <data name="Settings_StartupRegistering" xml:space="preserve"><value>Inscription au démarrage de Windows…</value></data>
+  <data name="Settings_StartupUnregistering" xml:space="preserve"><value>Retrait du démarrage de Windows…</value></data>
+  <data name="Settings_StartupConfirmFailed" xml:space="preserve"><value>Impossible de confirmer le démarrage automatique.</value></data>
+  <data name="Settings_StartupChangeFailed" xml:space="preserve"><value>Impossible de modifier le démarrage automatique de Windows.</value></data>
+  <data name="Settings_StartupYes" xml:space="preserve"><value>NAVA démarre à l'ouverture de session Windows.</value></data>
+  <data name="Settings_StartupNo" xml:space="preserve"><value>NAVA ne démarre pas à l'ouverture de session Windows.</value></data>
+  <data name="Settings_Connected" xml:space="preserve"><value>Connecté</value></data>
+  <data name="Settings_Connecting" xml:space="preserve"><value>Connexion en cours…</value></data>
+  <data name="Settings_Reconnecting" xml:space="preserve"><value>Reconnexion en cours…</value></data>
+  <data name="Settings_Unsupported" xml:space="preserve"><value>Appareil non concerné</value></data>
+  <data name="Settings_PingConfirmPending" xml:space="preserve"><value>Confirmation de la recherche ping en attente</value></data>
+  <data name="Settings_SubnetTooWide" xml:space="preserve"><value>Sous-réseau trop étendu</value></data>
+  <data name="Status_Disconnected" xml:space="preserve"><value>Non connecté</value></data>
+  <data name="Settings_PingNeedsConfirm" xml:space="preserve"><value>La recherche ping d'un large sous-réseau doit être confirmée</value></data>
+  <data name="Settings_SubnetManual" xml:space="preserve"><value>Le préfixe est inférieur à /16. Indiquez l'adresse manuellement</value></data>
+  <data name="Settings_NotFoundSsdp" xml:space="preserve"><value>Introuvable par SSDP ni par la recherche ping</value></data>
+  <data name="Settings_RangeStep" xml:space="preserve"><value>{0} – {1} / pas de {2}</value></data>
+  <data name="Settings_CapabilityAfterConnect" xml:space="preserve"><value>Après la connexion, seules les fonctions annoncées par l'API officielle sont affichées.</value></data>
+  <data name="Settings_RxV4aVerified" xml:space="preserve"><value>Modèle vérifié sur un RX-V4A. Les fonctions non prises en charge ne sont pas affichées.</value></data>
+  <data name="Settings_UnverifiedModel" xml:space="preserve"><value>Fonctionnement compatible avec l'API officielle. Ce modèle n'a pas été vérifié sur un appareil réel.</value></data>
+  <data name="Settings_RangeUnavailable" xml:space="preserve"><value>Impossible d'obtenir la plage depuis l'appareil</value></data>
+  <data name="Settings_ChangingInput" xml:space="preserve"><value>Source vers {0}</value></data>
+  <data name="Settings_ChangingVolume" xml:space="preserve"><value>Volume vers {0}</value></data>
+  <data name="Settings_ChangingSound" xml:space="preserve"><value>Champ sonore vers {0}</value></data>
+  <data name="Settings_ChangingFlag" xml:space="preserve"><value>{0} vers {1}</value></data>
+  <data name="Settings_ApplyingTone" xml:space="preserve"><value>Application de la tonalité</value></data>
+  <data name="Settings_ApplyingEq" xml:space="preserve"><value>Application de l'égaliseur</value></data>
+  <data name="Settings_BalanceRequired" xml:space="preserve"><value>Saisissez une valeur de balance.</value></data>
+  <data name="Settings_ChangingBalance" xml:space="preserve"><value>Balance vers {0}</value></data>
+  <data name="Settings_NumberRequired" xml:space="preserve"><value>Saisissez un nombre.</value></data>
+  <data name="Settings_PingPrompt" xml:space="preserve"><value>La recherche SSDP et le ping automatique (préfixe /24 ou plus précis) n'ont trouvé aucun amplificateur compatible.&#10;&#10;Lancer un ping sur un sous-réseau plus large, qui inclut le préfixe /{0}, pour {1:N0} hôtes au maximum ?&#10;&#10;Les hôtes qui répondent reçoivent uniquement getDeviceInfo, en lecture seule. Les réglages de l'amplificateur ne sont pas modifiés.</value></data>
+  <data name="Settings_PingPromptTitle" xml:space="preserve"><value>Recherche ping d'un large sous-réseau</value></data>
+  <data name="Settings_HotkeysOk" xml:space="preserve"><value>Raccourcis globaux : {0} inscrits (MOD_NOREPEAT)</value></data>
+  <data name="Settings_HotkeysConflict" xml:space="preserve"><value>Raccourcis globaux : {0} inscrits, {1} en conflit ({2})</value></data>
+  <data name="Settings_BlockMismatch" xml:space="preserve"><value>Allumage interdit ({0}), mais l'amplificateur est ON. Aucune mise en veille automatique.</value></data>
+  <data name="Settings_BlockActive" xml:space="preserve"><value>Allumage interdit : {0}</value></data>
+  <data name="Settings_ConfirmingDevice" xml:space="preserve"><value>vérification de l'appareil</value></data>
+  <data name="Settings_ActiveContexts" xml:space="preserve"><value>&#10;Contextes actifs : {0}</value></data>
+  <data name="Error_NotConnected" xml:space="preserve"><value>Aucun amplificateur compatible n'est connecté.</value></data>
+  <data name="Error_UnsupportedHere" xml:space="preserve"><value>Cette opération n'est pas disponible sur cet appareil.</value></data>
+  <data name="Error_CapabilityMissingOnDevice" xml:space="preserve"><value>Cette opération ne figure pas parmi les capacités annoncées par l'appareil.</value></data>
+  <data name="Error_ConfirmTimeoutRevert" xml:space="preserve"><value>La vérification de l'appareil a expiré. L'affichage revient à l'état actuel.</value></data>
+  <data name="Error_OperationTimeout" xml:space="preserve"><value>L'opération a expiré.</value></data>
+  <data name="Error_GenericWithLog" xml:space="preserve"><value>Impossible de terminer l'opération. Consultez le journal.</value></data>
+  <data name="Error_CheckInput" xml:space="preserve"><value>Vérifiez la saisie.</value></data>
+  <data name="Error_CapabilityMissing" xml:space="preserve"><value>Les capacités de l'appareil n'ont pas encore été obtenues.</value></data>
+  <data name="Error_OperationFailed" xml:space="preserve"><value>Impossible de terminer l'opération.</value></data>
+  <data name="Startup_ExeUnknown" xml:space="preserve"><value>Impossible de déterminer le fichier exécutable de NAVA.</value></data>
+  <data name="Startup_KeyUnopenable" xml:space="preserve"><value>Impossible d'ouvrir les paramètres de démarrage de Windows.</value></data>
+  <data name="Tray_Compact" xml:space="preserve"><value>Mini-commande d'alimentation</value></data>
+  <data name="Tray_OpenMain" xml:space="preserve"><value>Ouvrir l'écran de commande</value></data>
+  <data name="Tray_OpenSettings" xml:space="preserve"><value>Ouvrir les réglages</value></data>
+  <data name="Tray_Exit" xml:space="preserve"><value>Quitter</value></data>
+  <data name="Tray_Icon" xml:space="preserve"><value>NAVA - {0}</value></data>
+  <data name="Tray_Connecting" xml:space="preserve"><value>Connexion</value></data>
+  <data name="Tray_Status" xml:space="preserve"><value>État : {0}</value></data>
+  <data name="Tray_StatusBlocked" xml:space="preserve"><value>État : {0} / blocage : {1}</value></data>
+  <data name="Tray_ExternalOn" xml:space="preserve"><value>bloqué, ON externe</value></data>
+  <data name="Tray_PowerBlocked" xml:space="preserve"><value>allumage interdit</value></data>
+  <data name="Op_PowerBlocked" xml:space="preserve"><value>L'allumage est bloqué par un contexte d'interdiction.</value></data>
+  <data name="Op_AlreadyPower" xml:space="preserve"><value>L'alimentation est déjà dans l'état demandé.</value></data>
+  <data name="Op_PowerDone" xml:space="preserve"><value>Commande d'alimentation terminée.</value></data>
+  <data name="Op_ContextAlreadyActive" xml:space="preserve"><value>Le contexte est déjà actif. L'état de l'amplificateur n'est pas modifié.</value></data>
+  <data name="Op_ContextActivated" xml:space="preserve"><value>Contexte activé.</value></data>
+  <data name="Op_ContextActivatedPartial" xml:space="preserve"><value>Contexte activé, mais certaines actions enregistrées ont échoué.</value></data>
+  <data name="Op_ContextActivatedStandby" xml:space="preserve"><value>Contexte activé et amplificateur mis en veille.</value></data>
+  <data name="Op_ContextActivatedStandbyPartial" xml:space="preserve"><value>Amplificateur mis en veille, mais certaines actions enregistrées ont échoué.</value></data>
+  <data name="Op_ContextStandbyFailed" xml:space="preserve"><value>Le contexte est actif, mais l'amplificateur n'a pas pu être mis en veille.</value></data>
+  <data name="Op_ContextAlreadyInactive" xml:space="preserve"><value>Le contexte est déjà désactivé.</value></data>
+  <data name="Op_ContextDeactivated" xml:space="preserve"><value>Contexte désactivé. L'amplificateur n'est pas allumé automatiquement.</value></data>
+  <data name="Op_ContextDeactivatedPartial" xml:space="preserve"><value>Contexte désactivé, mais certaines actions enregistrées ont échoué. L'amplificateur n'est pas allumé automatiquement.</value></data>
+  <data name="Op_ActivityBlocked" xml:space="preserve"><value>L'activité est bloquée par un contexte d'interdiction d'allumage.</value></data>
+  <data name="Op_ActivityConfig" xml:space="preserve"><value>Définissez une seule entrée, ou une seule SCENE.</value></data>
+  <data name="Op_ActivityDone" xml:space="preserve"><value>L'activité a atteint l'état demandé.</value></data>
+  <data name="Op_ActivityPartial" xml:space="preserve"><value>Les commandes de l'amplificateur sont terminées, mais certaines actions enregistrées ont échoué.</value></data>
+  <data name="Op_ActivityFailed" xml:space="preserve"><value>Impossible de terminer l'activité.</value></data>
+  <data name="Op_ActivityDeactivated" xml:space="preserve"><value>Activité désactivée. L'amplificateur n'est pas mis en veille automatiquement.</value></data>
+  <data name="Op_ActivityDeactivatedPartial" xml:space="preserve"><value>Activité désactivée, mais certaines actions enregistrées ont échoué. L'amplificateur n'est pas modifié.</value></data>
+  <data name="Api_MainZoneUnavailable" xml:space="preserve"><value>Impossible d'obtenir l'état de la zone Main.</value></data>
+  <data name="Api_InvalidPower" xml:space="preserve"><value>Indiquez power avec la valeur 'on' ou 'standby'.</value></data>
+  <data name="Api_ForceNotAuthorized" xml:space="preserve"><value>L'allumage forcé depuis l'API exige une autorisation dédiée, qui n'est pas encore disponible.</value></data>
+  <data name="Api_ActivityNotFound" xml:space="preserve"><value>Activité non enregistrée.</value></data>
+  <data name="Api_ContextNotFound" xml:space="preserve"><value>Contexte non enregistré.</value></data>
+  <data name="Api_ActionNotFound" xml:space="preserve"><value>Identifiant d'action non enregistré.</value></data>
+  <data name="Api_Timeout" xml:space="preserve"><value>La commande de l'amplificateur a expiré.</value></data>
+  <data name="Api_DeviceError" xml:space="preserve"><value>L'amplificateur n'a pas pu terminer la commande.</value></data>
+  <data name="Api_Unreachable" xml:space="preserve"><value>Communication avec l'amplificateur impossible.</value></data>
+  <data name="Api_LoopbackOnly" xml:space="preserve"><value>L'API locale ne peut être liée qu'à une adresse de bouclage.</value></data>
+  <data name="Api_PortOutOfRange" xml:space="preserve"><value>Le port de l'API locale est hors plage.</value></data>
+  <data name="Action_Succeeded" xml:space="preserve"><value>Action enregistrée exécutée.</value></data>
+  <data name="Action_Failed" xml:space="preserve"><value>Impossible d'exécuter l'action enregistrée.</value></data>
+</root>

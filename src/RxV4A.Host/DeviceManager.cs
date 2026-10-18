@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RxV4A.Core;
+using RxV4A.Host.Localization;
 
 namespace RxV4A.Host;
 
@@ -78,9 +79,9 @@ public sealed class DeviceManager(
         await _operationGate.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
-            var client = _client ?? throw new DeviceUnavailableException("対応アンプに接続されていません。");
+            var client = _client ?? throw new DeviceUnavailableException(Strings.Error_NotConnected);
             var capabilities = capabilityStore.Current
-                ?? throw new DeviceUnavailableException("Capabilityを取得できていません。");
+                ?? throw new DeviceUnavailableException(Strings.Error_CapabilityMissing);
             if (!capabilities.SupportsZoneFunction("main", "power"))
             {
                 throw new CapabilityNotSupportedException("main.power");
@@ -128,9 +129,9 @@ public sealed class DeviceManager(
         await _operationGate.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
-            var client = _client ?? throw new DeviceUnavailableException("対応アンプに接続されていません。");
+            var client = _client ?? throw new DeviceUnavailableException(Strings.Error_NotConnected);
             var capabilities = capabilityStore.Current
-                ?? throw new DeviceUnavailableException("Capabilityを取得できていません。");
+                ?? throw new DeviceUnavailableException(Strings.Error_CapabilityMissing);
             var zone = capabilities.FindZone("main")
                 ?? throw new CapabilityNotSupportedException("main");
             var normalizedInput = inputId.Trim();
@@ -282,9 +283,9 @@ public sealed class DeviceManager(
         await _operationGate.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
-            var client = _client ?? throw new DeviceUnavailableException("対応アンプに接続されていません。");
+            var client = _client ?? throw new DeviceUnavailableException(Strings.Error_NotConnected);
             var capabilities = capabilityStore.Current
-                ?? throw new DeviceUnavailableException("Capabilityを取得できていません。");
+                ?? throw new DeviceUnavailableException(Strings.Error_CapabilityMissing);
             var zone = capabilities.FindZone("main")
                 ?? throw new CapabilityNotSupportedException("main");
             if (!capabilities.SupportsZoneFunction("main", "scene") ||
@@ -779,9 +780,9 @@ public sealed class DeviceManager(
         await _operationGate.WaitAsync(cancellationToken).ConfigureAwait(false);
         try
         {
-            var client = _client ?? throw new DeviceUnavailableException("対応アンプに接続されていません。");
+            var client = _client ?? throw new DeviceUnavailableException(Strings.Error_NotConnected);
             var capabilities = capabilityStore.Current
-                ?? throw new DeviceUnavailableException("Capabilityを取得できていません。");
+                ?? throw new DeviceUnavailableException(Strings.Error_CapabilityMissing);
             var zone = capabilities.FindZone("main")
                 ?? throw new CapabilityNotSupportedException("main");
             if (!capabilities.SupportsZoneFunction("main", capability))

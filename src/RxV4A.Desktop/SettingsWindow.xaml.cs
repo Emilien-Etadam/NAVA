@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Interop;
 using RxV4A.Core;
 using RxV4A.Host;
+using RxV4A.Host.Localization;
 
 namespace RxV4A.Desktop;
 
@@ -26,6 +27,8 @@ public partial class SettingsWindow : Window
     private bool _allowClose;
     private bool _pingConfirmationPromptActive;
     private bool _updatingDailyControls;
+    private bool _suppressLanguageEvents;
+    private LanguageOption[] _languageOptions = [];
     private string? _declinedPingConfirmationSignature;
     private string? _pendingConnectionText;
     private string? _pendingPower;
@@ -68,7 +71,7 @@ public partial class SettingsWindow : Window
         catch (Exception)
         {
             StartWithWindowsCheckBox.IsEnabled = false;
-            StartWithWindowsStatusText.Text = "Windowsのスタートアップ設定を読み取れませんでした。";
+            StartWithWindowsStatusText.Text = Strings.Settings_StartupUnreadable;
         }
         SourceInitialized += (_, _) =>
         {
@@ -82,12 +85,12 @@ public partial class SettingsWindow : Window
         ManualHostTextBox.Text = deviceManager.Settings.ManualHost ?? string.Empty;
         var interfaceOptions = new List<DiscoveryInterfaceOption>
         {
-            new("自動選択（すべての有効なNIC）", null)
+            new(Strings.Settings_NicAuto, null)
         };
         interfaceOptions.AddRange(deviceManager.GetDiscoveryNetworkInterfaces().Select(item =>
             new DiscoveryInterfaceOption(
                 $"{item.Name}  /{item.PrefixLength}" +
-                (item.HasDefaultGateway ? "  （既定経路あり）" : string.Empty),
+                (item.HasDefaultGateway ? Strings.Settings_NicDefaultRoute : string.Empty),
                 item.Id)));
         DiscoveryNetworkInterfaceComboBox.ItemsSource = interfaceOptions;
         DiscoveryNetworkInterfaceComboBox.SelectedItem = interfaceOptions.FirstOrDefault(item =>
@@ -98,6 +101,7 @@ public partial class SettingsWindow : Window
         Loaded += (_, _) => MaybePromptForBroadPingScan(_deviceManager.Snapshot);
         UpdateSnapshot(_deviceManager.Snapshot);
         UpdateControlState();
+        InitializeLanguageSelector();
     }
 
     public void ShowFromTray()
@@ -151,7 +155,7 @@ public partial class SettingsWindow : Window
         var target = power == MainPower.On ? "on" : "standby";
         var revision = NextOperationRevision("power");
         _pendingPower = target;
-        SetPendingOperation("power", power == MainPower.On ? "電源をONへ変更中" : "電源をスタンバイへ変更中");
+        SetPendingOperation("power", power == MainPower.On ? Strings.Settings_PowerToOn : Strings.Settings_PowerToStandby);
         UpdateSnapshot(_deviceManager.Snapshot);
 
         EnqueueSettingsCommand(async () =>
@@ -188,7 +192,7 @@ public partial class SettingsWindow : Window
     private async void RefreshButton_Click(object sender, RoutedEventArgs e)
     {
         _declinedPingConfirmationSignature = null;
-        _pendingConnectionText = "状態を確認中…";
+        _pendingConnectionText = Strings.Main_CheckingState;
         UpdateSnapshot(_deviceManager.Snapshot);
         await RunUiOperationAsync(() => _deviceManager.RefreshAsync());
         _pendingConnectionText = null;
@@ -200,7 +204,7 @@ public partial class SettingsWindow : Window
     {
         var interfaceId = (DiscoveryNetworkInterfaceComboBox.SelectedItem as DiscoveryInterfaceOption)?.Id;
         _declinedPingConfirmationSignature = null;
-        _pendingConnectionText = "接続設定を反映中…";
+        _pendingConnectionText = Strings.Settings_ApplyingConnection;
         UpdateSnapshot(_deviceManager.Snapshot);
         await RunUiOperationAsync(() =>
             _deviceManager.UpdateConnectionSettingsAsync(ManualHostTextBox.Text, interfaceId));
@@ -301,8 +305,8 @@ public partial class SettingsWindow : Window
     private void UpdateMinimizeBehaviorStatus()
     {
         MinimizeBehaviorStatusText.Text = _settings.MinimizeToTray
-            ? "最小化するとタスクトレイへ収納します。"
-            : "最小化してもタスクバーにアイコンを残します。";
+            ? Strings.Settings_MinimizeYes
+            : Strings.Settings_MinimizeNo;
     }
 
     private async void ShowCompactPowerOnStartupCheckBox_Click(object sender, RoutedEventArgs e)
@@ -336,8 +340,8 @@ public partial class SettingsWindow : Window
     private void UpdateCompactPowerStartupStatus()
     {
         CompactPowerStartupStatusText.Text = _settings.ShowCompactPowerOnStartup
-            ? "次回からNAVAの起動時にミニ電源操作を表示します。"
-            : "起動時はミニ電源操作を表示しません。";
+            ? Strings.Settings_CompactStartupYes
+            : Strings.Settings_CompactStartupNo;
     }
 
     private async void StartWithWindowsCheckBox_Click(object sender, RoutedEventArgs e)
@@ -351,8 +355,8 @@ public partial class SettingsWindow : Window
         var previous = !requested;
         StartWithWindowsCheckBox.IsEnabled = false;
         StartWithWindowsStatusText.Text = requested
-            ? "Windows起動時の実行を登録しています…"
-            : "Windows起動時の実行を解除しています…";
+            ? Strings.Settings_StartupRegistering
+            : Strings.Settings_StartupUnregistering;
 
         try
         {
@@ -360,7 +364,7 @@ public partial class SettingsWindow : Window
             var confirmed = await Task.Run(_windowsStartup.IsEnabled);
             if (confirmed != requested)
             {
-                throw new InvalidOperationException("スタートアップ設定を確認できませんでした。");
+                throw new InvalidOperationException(Strings.Settings_StartupConfirmFailed);
             }
 
             StartWithWindowsCheckBox.IsChecked = confirmed;
@@ -369,9 +373,9 @@ public partial class SettingsWindow : Window
         catch (Exception)
         {
             StartWithWindowsCheckBox.IsChecked = previous;
-            StartWithWindowsStatusText.Text = "Windows起動時の実行設定を変更できませんでした。";
+            StartWithWindowsStatusText.Text = Strings.Settings_StartupChangeFailed;
             System.Windows.MessageBox.Show(
-                "Windows起動時の実行設定を変更できませんでした。",
+                Strings.Settings_StartupChangeFailed,
                 "NAVA",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
@@ -385,8 +389,8 @@ public partial class SettingsWindow : Window
     private void UpdateStartWithWindowsStatus()
     {
         StartWithWindowsStatusText.Text = StartWithWindowsCheckBox.IsChecked == true
-            ? "Windowsへのサインイン時にNAVAを自動起動します。"
-            : "Windowsへのサインイン時には自動起動しません。";
+            ? Strings.Settings_StartupYes
+            : Strings.Settings_StartupNo;
     }
 
     private void DeviceManager_SnapshotChanged(object? sender, DeviceSnapshot snapshot) =>
@@ -399,20 +403,20 @@ public partial class SettingsWindow : Window
     {
         ConnectionText.Text = _pendingConnectionText ?? (snapshot.ConnectionState switch
         {
-            DeviceConnectionState.Connected => "接続中",
-            DeviceConnectionState.Connecting => "接続しています…",
-            DeviceConnectionState.Reconnecting => "再接続しています…",
-            DeviceConnectionState.Unsupported => "対象外の機器",
-            _ when snapshot.ErrorCode == "ping_scan_confirmation_required" => "ping探索の確認待ち",
-            _ when snapshot.ErrorCode == "ping_scan_too_large" => "サブネットが広すぎます",
-            _ => "未接続"
+            DeviceConnectionState.Connected => Strings.Settings_Connected,
+            DeviceConnectionState.Connecting => Strings.Settings_Connecting,
+            DeviceConnectionState.Reconnecting => Strings.Settings_Reconnecting,
+            DeviceConnectionState.Unsupported => Strings.Settings_Unsupported,
+            _ when snapshot.ErrorCode == "ping_scan_confirmation_required" => Strings.Settings_PingConfirmPending,
+            _ when snapshot.ErrorCode == "ping_scan_too_large" => Strings.Settings_SubnetTooWide,
+            _ => Strings.Status_Disconnected
         });
         DeviceText.Text = snapshot.Capabilities is null
             ? snapshot.ErrorCode switch
             {
-                "ping_scan_confirmation_required" => "広いサブネットのping探索には確認が必要です",
-                "ping_scan_too_large" => "サブネットが/16未満です。接続先を手動指定してください",
-                "device_not_found" => "SSDPおよびping探索で見つかりません",
+                "ping_scan_confirmation_required" => Strings.Settings_PingNeedsConfirm,
+                "ping_scan_too_large" => Strings.Settings_SubnetManual,
+                "device_not_found" => Strings.Settings_NotFoundSsdp,
                 _ => "—"
             }
             : $"{snapshot.Capabilities.DeviceInfo.ModelName}  (API {snapshot.Capabilities.DeviceInfo.ApiVersion})";
@@ -479,7 +483,11 @@ public partial class SettingsWindow : Window
                 }
 
                 VolumeValueText.Text = FormatValue((decimal)VolumeSlider.Value);
-                VolumeSlider.ToolTip = $"{volumeRange.Minimum} ～ {volumeRange.Maximum} / {volumeRange.Step}刻み";
+                VolumeSlider.ToolTip = Strings.Format(
+                    Strings.Settings_RangeStep,
+                    volumeRange.Minimum,
+                    volumeRange.Maximum,
+                    volumeRange.Step);
             }
 
             SetBooleanControl(MutePanel, MuteCheckBox, capabilities, "mute", _pendingMute ?? status?.Mute, connected);
@@ -545,10 +553,10 @@ public partial class SettingsWindow : Window
             }
 
             CapabilityNoteText.Text = capabilities is null
-                ? "接続後、機器の公式APIから取得した対応機能だけを表示します。"
+                ? Strings.Settings_CapabilityAfterConnect
                 : string.Equals(capabilities.DeviceInfo.ModelName, "RX-V4A", StringComparison.OrdinalIgnoreCase)
-                    ? "RX-V4A実機確認対象。未対応の機能は表示しません。"
-                    : "公式APIとの互換動作です。この機種での実機確認は行っていません。";
+                    ? Strings.Settings_RxV4aVerified
+                    : Strings.Settings_UnverifiedModel;
         }
         finally
         {
@@ -585,8 +593,8 @@ public partial class SettingsWindow : Window
         control.ToolTip = range?.Minimum is decimal minimum &&
                           range.Maximum is decimal maximum &&
                           range.Step is decimal step
-            ? $"{minimum} ～ {maximum} / {step}刻み"
-            : "機器から値域を取得できません";
+            ? Strings.Format(Strings.Settings_RangeStep, minimum, maximum, step)
+            : Strings.Settings_RangeUnavailable;
 
     private void SetInputButton_Click(object sender, RoutedEventArgs e)
     {
@@ -594,7 +602,7 @@ public partial class SettingsWindow : Window
         {
             BeginOptimisticDeviceChange(
                 "input",
-                $"ソースを {input} へ変更中",
+                Strings.Format(Strings.Settings_ChangingInput, input),
                 () => _pendingInput = input,
                 () => _pendingInput = null,
                 () => _deviceManager.SetMainInputAsync(input),
@@ -608,7 +616,7 @@ public partial class SettingsWindow : Window
         var tolerance = (decimal)VolumeSlider.TickFrequency / 2m;
         BeginOptimisticDeviceChange(
             "volume",
-            $"音量を {FormatValue(volume)} へ変更中",
+            Strings.Format(Strings.Settings_ChangingVolume, FormatValue(volume)),
             () => _pendingVolume = volume,
             () => _pendingVolume = null,
             () => _deviceManager.SetMainVolumeAsync(volume),
@@ -626,7 +634,7 @@ public partial class SettingsWindow : Window
     private void MuteCheckBox_Click(object sender, RoutedEventArgs e)
     {
         var value = MuteCheckBox.IsChecked == true;
-        BeginBooleanOperation("mute", "ミュート", value, state => _pendingMute = state,
+        BeginBooleanOperation("mute", Strings.Settings_Mute, value, state => _pendingMute = state,
             state => state.MainZone?.Mute, target => _deviceManager.SetMainMuteAsync(target));
     }
 
@@ -636,7 +644,7 @@ public partial class SettingsWindow : Window
         {
             BeginOptimisticDeviceChange(
                 "sound-program",
-                $"音場を {program} へ変更中",
+                Strings.Format(Strings.Settings_ChangingSound, program),
                 () => _pendingSoundProgram = program,
                 () => _pendingSoundProgram = null,
                 () => _deviceManager.SetMainSoundProgramAsync(program),
@@ -688,7 +696,7 @@ public partial class SettingsWindow : Window
 
         BeginOptimisticDeviceChange(
             key,
-            $"{displayName}を{(target ? "ON" : "OFF")}へ変更中",
+            Strings.Format(Strings.Settings_ChangingFlag, displayName, target ? "ON" : "OFF"),
             () => setPending(target),
             () => setPending(null),
             () => operation(target),
@@ -705,7 +713,7 @@ public partial class SettingsWindow : Window
                 ParseOptionalDecimal(TrebleTextBox.Text));
             BeginOptimisticDeviceChange(
                 "tone",
-                "トーン設定を反映中",
+                Strings.Settings_ApplyingTone,
                 () => _pendingToneControl = target,
                 () => _pendingToneControl = null,
                 () => _deviceManager.SetMainToneControlAsync(target),
@@ -728,7 +736,7 @@ public partial class SettingsWindow : Window
                 ParseOptionalDecimal(EqualizerHighTextBox.Text));
             BeginOptimisticDeviceChange(
                 "equalizer",
-                "EQ設定を反映中",
+                Strings.Settings_ApplyingEq,
                 () => _pendingEqualizer = target,
                 () => _pendingEqualizer = null,
                 () => _deviceManager.SetMainEqualizerAsync(target),
@@ -745,10 +753,10 @@ public partial class SettingsWindow : Window
         try
         {
             var target = ParseOptionalDecimal(BalanceTextBox.Text) ??
-                         throw new ArgumentException("バランス値を入力してください。");
+                         throw new ArgumentException(Strings.Settings_BalanceRequired);
             BeginOptimisticDeviceChange(
                 "balance",
-                $"バランスを {FormatValue(target)} へ変更中",
+                Strings.Format(Strings.Settings_ChangingBalance, FormatValue(target)),
                 () => _pendingBalance = target,
                 () => _pendingBalance = null,
                 () => _deviceManager.SetMainBalanceAsync(target),
@@ -773,7 +781,7 @@ public partial class SettingsWindow : Window
             return current;
         }
 
-        throw new ArgumentException("数値を入力してください。");
+        throw new ArgumentException(Strings.Settings_NumberRequired);
     }
 
     private static string FormatValue(decimal? value) =>
@@ -814,10 +822,11 @@ public partial class SettingsWindow : Window
         try
         {
             var response = System.Windows.MessageBox.Show(
-                $"SSDPとプレフィックス/24以上の自動ping探索では対応アンプを検出できませんでした。\n\n" +
-                $"プレフィックス /{confirmation.BroadestPrefixLength} を含む広いサブネットへ、最大 {confirmation.HostCount:N0} ホストのping探索を実行しますか？\n\n" +
-                "応答ホストには読み取り専用のgetDeviceInfoを送信します。アンプ設定は変更しません。",
-                "広いサブネットのping探索",
+                Strings.Format(
+                    Strings.Settings_PingPrompt,
+                    confirmation.BroadestPrefixLength,
+                    confirmation.HostCount),
+                Strings.Settings_PingPromptTitle,
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
             if (response == MessageBoxResult.Yes)
@@ -951,8 +960,12 @@ public partial class SettingsWindow : Window
     {
         var failures = registrations.Where(item => !item.Registered).ToArray();
         HotkeyStatusText.Text = failures.Length == 0
-            ? $"グローバルホットキー: {registrations.Count}件を登録済み (MOD_NOREPEAT)"
-            : $"グローバルホットキー: {registrations.Count - failures.Length}件登録、競合 {failures.Length}件 ({string.Join(", ", failures.Select(item => item.Gesture))})";
+            ? Strings.Format(Strings.Settings_HotkeysOk, registrations.Count)
+            : Strings.Format(
+                Strings.Settings_HotkeysConflict,
+                registrations.Count - failures.Length,
+                failures.Length,
+                string.Join(", ", failures.Select(item => item.Gesture)));
         HotkeyStatusText.Foreground = failures.Length == 0
             ? System.Windows.Media.Brushes.DarkGreen
             : System.Windows.Media.Brushes.DarkOrange;
@@ -982,8 +995,8 @@ public partial class SettingsWindow : Window
         BlockerWarningText.Text = active.Length == 0
             ? string.Empty
             : mismatch
-                ? $"電源ON禁止中 ({string.Join(", ", active)}) ですが、アンプはONです。自動OFFは行いません。"
-                : $"電源ON禁止中: {string.Join(", ", active)}";
+                ? Strings.Format(Strings.Settings_BlockMismatch, string.Join(", ", active))
+                : Strings.Format(Strings.Settings_BlockActive, string.Join(", ", active));
     }
 
     private void BeginOptimisticDeviceChange(
@@ -1060,7 +1073,7 @@ public partial class SettingsWindow : Window
             : Visibility.Visible;
         OperationStatusText.Text = _pendingOperationLabels.Count == 0
             ? string.Empty
-            : $"{string.Join("  •  ", _pendingOperationLabels.Values)}  •  実機確認中";
+            : $"{string.Join("  •  ", _pendingOperationLabels.Values)}  •  {Strings.Settings_ConfirmingDevice}";
     }
 
     private void EnqueueSettingsCommand(Func<Task> command)
@@ -1152,7 +1165,7 @@ public partial class SettingsWindow : Window
 
         System.Windows.MessageBox.Show(
             result.Message + (result.ActiveBlockers.Count > 0
-                ? $"\n有効なコンテキスト: {string.Join(", ", result.ActiveBlockers)}"
+                ? Strings.Format(Strings.Settings_ActiveContexts, string.Join(", ", result.ActiveBlockers))
                 : string.Empty),
             "NAVA",
             MessageBoxButton.OK,
@@ -1170,7 +1183,7 @@ public partial class SettingsWindow : Window
         catch (Exception)
         {
             System.Windows.MessageBox.Show(
-                "操作を完了できませんでした。ログを確認してください。",
+                Strings.Error_GenericWithLog,
                 "NAVA",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
@@ -1194,12 +1207,12 @@ public partial class SettingsWindow : Window
         System.Windows.MessageBox.Show(
             exception switch
             {
-                DeviceUnavailableException => "対応アンプに接続されていません。",
-                CapabilityNotSupportedException => "実機のCapabilityにこの操作がありません。",
-                TimeoutException => "実機の状態確認がタイムアウトしました。現在の状態に表示を戻します。",
-                OperationCanceledException => "操作がタイムアウトしました。",
-                ArgumentException => "入力内容を確認してください。",
-                _ => "操作を完了できませんでした。ログを確認してください。"
+                DeviceUnavailableException => Strings.Error_NotConnected,
+                CapabilityNotSupportedException => Strings.Error_CapabilityMissingOnDevice,
+                TimeoutException => Strings.Error_ConfirmTimeoutRevert,
+                OperationCanceledException => Strings.Error_OperationTimeout,
+                ArgumentException => Strings.Error_CheckInput,
+                _ => Strings.Error_GenericWithLog
             },
             "NAVA",
             MessageBoxButton.OK,
@@ -1217,6 +1230,66 @@ public partial class SettingsWindow : Window
 
         return status.Volume?.ToString("0.###", CultureInfo.CurrentCulture) ?? "—";
     }
+
+    private void InitializeLanguageSelector()
+    {
+        _languageOptions =
+        [
+            new LanguageOption(UiLanguageSelection.Auto, Strings.Language_System),
+            new LanguageOption(UiLanguageSelection.French, "Français"),
+            new LanguageOption(UiLanguageSelection.English, "English"),
+            new LanguageOption(UiLanguageSelection.Japanese, "\u65E5\u672C\u8A9E")
+        ];
+        _suppressLanguageEvents = true;
+        LanguageComboBox.DisplayMemberPath = nameof(LanguageOption.Label);
+        LanguageComboBox.ItemsSource = _languageOptions;
+        var selected = UiLanguageSelection.Normalize(_settings.UiLanguage) ?? UiLanguageSelection.Auto;
+        LanguageComboBox.SelectedItem = _languageOptions.First(item => item.Code == selected);
+        _suppressLanguageEvents = false;
+    }
+
+    private async void LanguageComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+        if (_suppressLanguageEvents || LanguageComboBox.SelectedItem is not LanguageOption option)
+        {
+            return;
+        }
+
+        var requested = option.Code == UiLanguageSelection.Auto ? UiLanguageSelection.Auto : option.Code;
+        string? previous;
+        lock (_settings.SyncRoot)
+        {
+            previous = _settings.UiLanguage;
+            if (string.Equals(previous, requested, StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            _settings.UiLanguage = requested;
+        }
+
+        LanguageStatusText.Text = Strings.Settings_LanguageRestart;
+        try
+        {
+            await _settingsStore.SaveAsync(_settings);
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
+        {
+            lock (_settings.SyncRoot)
+            {
+                _settings.UiLanguage = previous;
+            }
+
+            _suppressLanguageEvents = true;
+            var selected = UiLanguageSelection.Normalize(previous) ?? UiLanguageSelection.Auto;
+            LanguageComboBox.SelectedItem = _languageOptions.First(item => item.Code == selected);
+            _suppressLanguageEvents = false;
+            LanguageStatusText.Text = string.Empty;
+            ShowUiOperationError(exception);
+        }
+    }
+
+    private sealed record LanguageOption(string Code, string Label);
 
     private sealed record DiscoveryInterfaceOption(string Label, string? Id);
 }

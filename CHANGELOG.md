@@ -1,40 +1,50 @@
-# 変更履歴
+# Historique
 
-このプロジェクトは[Keep a Changelog](https://keepachangelog.com/ja/1.1.0/)の考え方を参考にし、バージョン番号は[Semantic Versioning](https://semver.org/lang/ja/)に従います。
+Ce fork suit l'esprit de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) et [SemVer](https://semver.org/lang/fr/).
 
 ## [Unreleased]
 
-### Fixed
+## [0.1.0-fr.1] - 2026-10-18
 
-- ミニ電源操作がタスクバー上のアイコンへのクリックを遮らないよう、各モニターの作業領域内へ位置を自動補正
-- ミニ電源操作もクリック直後に表示を更新し、通信中の古い実機状態で表示が戻らないよう修正
-
-### Added
-
-- NAVA起動時にミニ電源操作を自動表示する設定
-
-## [0.1.0] - 2026-09-06
+Fork traduit de [NAVA](https://github.com/azuki2anko/NAVA). Le comportement n'est pas modifié.
 
 ### Added
 
-- Yamaha Extended Control対応アンプのCapability駆動検出とMain Zone状態取得
-- 電源、入力、音量、ミュート、音場、音声処理、トーン、EQ、バランス操作
-- WPFメイン画面、タスクトレイ、最前面ミニ電源トグル
-- localhost REST APIとOpenAPI
-- グローバルホットキー、汎用アクティビティ、Power-on blocker、登録済みアクション契約
-- 構造化ログ、自動再接続、モックテスト
-- GitHub ActionsによるWindows Release build、test、format、self-contained publish検証
-- 日本語の利用説明書、APIガイド、公開チェックリスト
-- Issue／Pull Requestテンプレート、セキュリティポリシー、貢献ガイド
-- 操作画面・設定画面のスクリーンショットを使用した利用説明
-- 自己完結型Portable ZIPとユーザー別インストーラーの作成スクリプト
-- 最小化時のタスクトレイ収納設定とWindowsサインイン時の自動起動設定
+- Interface en français (langue neutre), anglais et japonais, choisie selon la langue d'affichage de Windows, avec un réglage enregistré et appliqué au redémarrage
+- Installateur Inno Setup en français et en anglais
+- Artefact portable autonome à chaque push ou pull request, et GitHub Release du zip lorsqu'un tag `v*` est poussé
 
 ### Changed
 
-- 製品の主名称を「NAVA」、副題を「Network AV Amp Controller」へ変更
-- 公開製品名を「Network AV Amp Controller」へ変更
-- 日常操作画面を、円形ボリュームと電源・ミュート・ソース・音場操作中心の構成へ更新
+- Version `0.1.0-fr.1`
+- README en français, avec un résumé en anglais et le crédit de l'auteur original anko
 
-[Unreleased]: https://github.com/azuki2anko/NAVA/compare/v0.1.0...HEAD
+Cette version reprend aussi les changements amont encore non publiés dans la 0.1.0 :
+
+- la mini-commande d'alimentation est ramenée dans la zone de travail de chaque écran, pour ne pas masquer un clic sur une icône de la barre des tâches ;
+- son affichage est mis à jour dès le clic, sans revenir à un état ancien pendant la communication ;
+- un réglage l'affiche au démarrage de NAVA.
+
+## [0.1.0] - 2026-09-06
+
+Première publication amont, par anko. Le texte d'origine est en japonais dans [azuki2anko/NAVA](https://github.com/azuki2anko/NAVA/blob/v0.1.0/CHANGELOG.md).
+
+### Added
+
+- Détection pilotée par les capacités et lecture de la zone Main pour les amplificateurs Yamaha Extended Control
+- Alimentation, source, volume, sourdine, champ sonore, traitements, tonalité, égaliseur et balance
+- Fenêtre WPF, zone de notification et mini-commande d'alimentation au premier plan
+- API REST locale et OpenAPI
+- Raccourcis globaux, activités, blocage d'allumage et contrat d'actions enregistrées
+- Journaux structurés, reconnexion automatique et tests simulés
+- Vérification GitHub Actions du build, des tests, du format et de la publication autonome
+- Guide, politique de sécurité, modèles de tickets et script de distribution portable et installateur
+
+### Changed
+
+- Nom du produit : NAVA, sous-titre Network AV Amp Controller
+- Écran quotidien organisé autour du volume circulaire, de l'alimentation, de la sourdine, de la source et du champ sonore
+
+[Unreleased]: https://github.com/Emilien-Etadam/NAVA/compare/v0.1.0-fr.1...HEAD
+[0.1.0-fr.1]: https://github.com/Emilien-Etadam/NAVA/releases/tag/v0.1.0-fr.1
 [0.1.0]: https://github.com/azuki2anko/NAVA/releases/tag/v0.1.0

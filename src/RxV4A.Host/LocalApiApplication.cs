@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Routing;
 using RxV4A.Core;
+using RxV4A.Host.Localization;
 
 namespace RxV4A.Host;
 
@@ -112,7 +113,7 @@ public static class LocalApiApplication
             var capabilities = manager.Snapshot.Capabilities;
             if (capabilities is null)
             {
-                return ApiError(StatusCodes.Status503ServiceUnavailable, "device_unavailable", "対応アンプに接続されていません。");
+                return ApiError(StatusCodes.Status503ServiceUnavailable, "device_unavailable", Strings.Error_NotConnected);
             }
 
             return Results.Ok(new
@@ -137,7 +138,7 @@ public static class LocalApiApplication
         {
             var snapshot = manager.Snapshot;
             return snapshot.MainZone is null
-                ? ApiError(StatusCodes.Status503ServiceUnavailable, "device_unavailable", "Main Zone状態を取得できません。")
+                ? ApiError(StatusCodes.Status503ServiceUnavailable, "device_unavailable", Strings.Api_MainZoneUnavailable)
                 : Results.Ok(new
                 {
                     snapshot.MainZone.Power,
@@ -175,7 +176,7 @@ public static class LocalApiApplication
             }
             else
             {
-                return ApiError(StatusCodes.Status400BadRequest, "invalid_power", "powerは'on'または'standby'で指定してください。");
+                return ApiError(StatusCodes.Status400BadRequest, "invalid_power", Strings.Api_InvalidPower);
             }
 
             if (request.Force)
@@ -183,7 +184,7 @@ public static class LocalApiApplication
                 return ApiError(
                     StatusCodes.Status403Forbidden,
                     "force_not_authorized",
-                    "APIからの強制ONには、今後追加する専用操作権限が必要です。");
+                    Strings.Api_ForceNotAuthorized);
             }
 
             var result = await orchestrator.SetPowerAsync(power, false, cancellationToken).ConfigureAwait(false);
@@ -289,7 +290,7 @@ public static class LocalApiApplication
             var activity = orchestrator.GetActivities().FirstOrDefault(item =>
                 string.Equals(item.Id, activityId, StringComparison.OrdinalIgnoreCase));
             return activity is null
-                ? ApiError(StatusCodes.Status404NotFound, "activity_not_found", "登録されていないアクティビティです。")
+                ? ApiError(StatusCodes.Status404NotFound, "activity_not_found", Strings.Api_ActivityNotFound)
                 : Results.Ok(activity);
         }).WithName("GetActivityStatus");
 
@@ -311,7 +312,7 @@ public static class LocalApiApplication
             var context = orchestrator.GetContexts().FirstOrDefault(item =>
                 string.Equals(item.Id, contextId, StringComparison.OrdinalIgnoreCase));
             return context is null
-                ? ApiError(StatusCodes.Status404NotFound, "context_not_found", "登録されていないコンテキストです。")
+                ? ApiError(StatusCodes.Status404NotFound, "context_not_found", Strings.Api_ContextNotFound)
                 : Results.Ok(context);
         }).WithName("GetContext");
 
@@ -339,7 +340,7 @@ public static class LocalApiApplication
             catch (ArgumentOutOfRangeException)
             {
                 return ApiError(StatusCodes.Status404NotFound, "registered_action_not_found",
-                    "登録されていないアクションIDです。");
+                    Strings.Api_ActionNotFound);
             }
         }).WithName("ExecuteRegisteredAction");
     }
@@ -356,7 +357,7 @@ public static class LocalApiApplication
         }
         catch (ArgumentOutOfRangeException)
         {
-            return ApiError(StatusCodes.Status404NotFound, "activity_not_found", "登録されていないアクティビティです。");
+            return ApiError(StatusCodes.Status404NotFound, "activity_not_found", Strings.Api_ActivityNotFound);
         }
     }
 
@@ -372,7 +373,7 @@ public static class LocalApiApplication
         }
         catch (ArgumentOutOfRangeException)
         {
-            return ApiError(StatusCodes.Status404NotFound, "activity_not_found", "登録されていないアクティビティです。");
+            return ApiError(StatusCodes.Status404NotFound, "activity_not_found", Strings.Api_ActivityNotFound);
         }
     }
 
@@ -388,7 +389,7 @@ public static class LocalApiApplication
         }
         catch (ArgumentOutOfRangeException)
         {
-            return ApiError(StatusCodes.Status404NotFound, "context_not_found", "登録されていないコンテキストです。");
+            return ApiError(StatusCodes.Status404NotFound, "context_not_found", Strings.Api_ContextNotFound);
         }
     }
 
@@ -404,7 +405,7 @@ public static class LocalApiApplication
         }
         catch (ArgumentOutOfRangeException)
         {
-            return ApiError(StatusCodes.Status404NotFound, "context_not_found", "登録されていないコンテキストです。");
+            return ApiError(StatusCodes.Status404NotFound, "context_not_found", Strings.Api_ContextNotFound);
         }
     }
 
@@ -467,15 +468,15 @@ public static class LocalApiApplication
         }
         catch (OperationCanceledException)
         {
-            return ApiError(StatusCodes.Status504GatewayTimeout, "timeout", "アンプ操作がタイムアウトしました。");
+            return ApiError(StatusCodes.Status504GatewayTimeout, "timeout", Strings.Api_Timeout);
         }
         catch (YamahaException)
         {
-            return ApiError(StatusCodes.Status502BadGateway, "device_error", "アンプが操作を完了できませんでした。");
+            return ApiError(StatusCodes.Status502BadGateway, "device_error", Strings.Api_DeviceError);
         }
         catch (HttpRequestException)
         {
-            return ApiError(StatusCodes.Status503ServiceUnavailable, "device_unavailable", "アンプと通信できません。");
+            return ApiError(StatusCodes.Status503ServiceUnavailable, "device_unavailable", Strings.Api_Unreachable);
         }
     }
 
@@ -486,12 +487,12 @@ public static class LocalApiApplication
     {
         if (!IPAddress.TryParse(settings.BindAddress, out var address) || !IPAddress.IsLoopback(address))
         {
-            throw new InvalidOperationException("MVPのローカルAPIはループバックアドレスだけにバインドできます。");
+            throw new InvalidOperationException(Strings.Api_LoopbackOnly);
         }
 
         if (settings.Port is < 1024 or > 65535)
         {
-            throw new InvalidOperationException("ローカルAPIのポート番号が範囲外です。");
+            throw new InvalidOperationException(Strings.Api_PortOutOfRange);
         }
     }
 
